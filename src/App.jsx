@@ -1,50 +1,48 @@
-// src/App.jsx
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// 共用元件
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import "./App.css"; // ✅ 用 CSS 就好
 
-// 各頁面
-import Home from './pages/Home'
-import AboutMe from './pages/AboutMe'
-import Blog from './pages/Blog'
-import BrowWorks from './pages/BrowWorks'
-import ColorExplorer from './pages/ColorExplorer'
-import FAQ from './pages/FAQ'
-import NailTime from './pages/NailTime'
-import NailWorks from './pages/NailWorks'
-import Pricing from './pages/Pricing'
-import StoreEnvironment from './pages/StoreEnvironment'
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
-import './scss/App.scss'   // 全域樣式
+import Home from "./pages/Home";
+import Aboutme from "./pages/Aboutme";
+import Blog from "./pages/Blog";
+import BrowWorks from "./pages/BrowWorks";
+import ColorExplorer from "./pages/ColorExplorer";
+import FAQ from "./pages/FAQ";
+import NailTime from "./pages/NailTime";
+import NailWorks from "./pages/NailWorks";
+import Pricing from "./pages/Pricing";
+import StoreEnvironment from "./pages/StoreEnvironment";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Navbar />
+      {/* Navbar 全寬 */}
+      <Navbar />
 
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutMe />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/browworks" element={<BrowWorks />} />
-            <Route path="/colorexplorer" element={<ColorExplorer />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/nailtime" element={<NailTime />} />
-            <Route path="/nailworks" element={<NailWorks />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/store" element={<StoreEnvironment />} />
-          </Routes>
-        </main>
+      {/* 中間內容區：置中 + 限寬 */}
+      <main className="page-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Aboutme" element={<Aboutme />} />
+          <Route path="/Blog" element={<Blog />} />
+          <Route path="/Browworks" element={<BrowWorks />} />
+          <Route path="/Colorexplorer" element={<ColorExplorer />} />
+          <Route path="/Faq" element={<FAQ />} />
+          <Route path="/Nailtime" element={<NailTime />} />
+          <Route path="/Nailworks" element={<NailWorks />} />
+          <Route path="/Pricing" element={<Pricing />} />
+          <Route path="/Storeenvironment" element={<StoreEnvironment />} />
+        </Routes>
+      </main>
 
-        <Footer />
-      </div>
+      {/* Footer 全寬 */}
+      <Footer />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
