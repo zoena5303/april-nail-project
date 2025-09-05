@@ -1,36 +1,45 @@
-/* 全域 reset */
-body, html, #root {
+/* ========== 全域設定 ========== */
+html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100%;
   font-family: "Noto Sans TC", sans-serif;
-  background-color: #f8f5f0; /* ✅ 全站背景色 */
-  color: #222; /* 預設文字顏色 */
+  background-color: #f8f5f0; /* ✅ 全站背景米色 */
+  color: #222;
+  overflow-x: hidden; /* ✅ 防止水平滾動 */
 }
 
-/* 中間內容區：置中 + 限寬 */
+/* 用 flex 排版：Navbar 上、Footer 下，中間撐開 */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ========== 中間內容 ========== */
 .page-container {
-  max-width: 1200px;       /* ✅ 依照設計稿 */
-  margin: 0 auto;          /* ✅ 水平置中 */
-  padding: 2rem 1rem;      /* 內距 */
-  min-height: 60vh;        /* ✅ 避免整個撐滿怪比例 */
-  background-color: transparent; 
+  flex: 1;               
+  max-width: 1200px;     
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+
+  /* ✅ 確保每頁至少跟首頁一樣高 */
+  min-height: calc(100vh - 180px);
+  /* 180px ≈ Navbar + Footer 高度，可以依實際調整 */
 }
 
-/* Navbar 與 Footer 全寬 */
-.navbar, .footer {
-  width: 100%;
-}
-
-/* Navbar */
+/* ========== Navbar ========== */
 .navbar {
-  background-color: #e68a1f; /* 橘色背景 */
+  width: 100%;
+  background-color: #d5842a; /* ✅ 橘色 */
   padding: 1rem 2rem;
+  box-sizing: border-box;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #fff;
 }
 
 .navbar .nav-links {
@@ -51,28 +60,31 @@ body, html, #root {
   text-decoration: underline;
 }
 
-/* Footer */
+/* ========== Footer ========== */
 .footer {
-  background-color: #d6d0c7; /* 淺米色 */
+  width: 100%;
+  background-color: #d6d0c7; /* ✅ 淺米色 */
   padding: 2rem 0 0;
+  box-sizing: border-box;
 }
 
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
-  padding: 0 2rem;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 
-.footer-container h4 {
+.footer h4 {
   margin-bottom: 0.5rem;
   font-size: 1rem;
-  color: #5c2a7c; /* 紫色標題 */
+  color: #5c2a7c;
 }
 
-.footer-container p {
+.footer p {
   margin: 0.2rem 0;
   font-size: 0.9rem;
   color: #333;
