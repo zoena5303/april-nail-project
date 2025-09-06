@@ -1,0 +1,165 @@
+.nailtime {
+  /* Banner 區 */
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner-title {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+  }
+
+  /* 表單區 */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #f9f5f0;
+  }
+
+  .reservation-form {
+    width: 100%;
+    max-width: 500px;
+    background: #f3e0b1; /* 奶茶色底板 */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #5b4c39;
+      }
+
+      input,
+      select {
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+
+        &:focus {
+          outline: none;
+          border-color: #d88b32;
+          box-shadow: 0 0 5px rgba(216, 139, 50, 0.5);
+        }
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #d88b32;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #b67126;
+      }
+    }
+  }
+
+  /* 即時提示 */
+  .preview {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff8f0;
+    border-left: 4px solid #d88b32;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #5b4c39;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Modal Box */
+.modal {
+  background: #f3f3f3;
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+
+  .modal-icon {
+    font-size: 3rem;
+  }
+
+  p {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  .close-btn {
+    margin-top: 25px;
+    padding: 10px 20px;
+    background: #d88b32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background: #b67126;
+    }
+  }
+}
+
+/* 動畫 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
