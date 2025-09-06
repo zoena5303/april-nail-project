@@ -1,0 +1,162 @@
+.faq-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  color: #3c2f2f;
+
+  /* Header：標題 + 搜尋框 */
+  .faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .faq-search {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #d4a373;
+      border-radius: 50px;
+      padding: 6px 12px;
+      background: #fff;
+      min-width: 220px;
+
+      .search-icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 6px;
+        flex-shrink: 0;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        font-size: 15px;
+        flex: 1;
+        color: #5b4c39;
+        background: transparent;
+
+        &::placeholder {
+          color: #a36b3f;
+          opacity: 0.8;
+        }
+      }
+
+      .clear-btn {
+        background: none;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        color: #a36b3f;
+        margin-left: 5px;
+        transition: transform 0.2s, color 0.2s;
+
+        &:hover {
+          transform: scale(1.2);
+          color: #b76b2b;
+        }
+      }
+    }
+  }
+
+  /* 📊 搜尋結果數 */
+  .search-result {
+    font-size: 15px;
+    color: #a36b3f;
+    margin-bottom: 20px;
+  }
+
+  /* FAQ 卡片 */
+  .faq-list {
+    .faq-item {
+      background: #F5E6CC; // 奶茶色
+      border-radius: 12px;
+      padding: 18px 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      overflow: hidden;
+
+      &.active {
+        background: linear-gradient(180deg, #F3E0B1 0%, #F5E6CC 100%);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #b76b2b;
+        }
+
+        .faq-icon {
+          font-size: 22px;
+          margin-left: 10px;
+        }
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, opacity 0.4s ease;
+        font-size: 16px;
+        line-height: 1.7;
+        color: #333;
+        margin-top: 8px;
+        opacity: 0;
+
+        p {
+          margin: 0;
+          padding: 5px 0;
+        }
+      }
+
+      &.active .faq-answer {
+        max-height: 500px;
+        opacity: 1;
+      }
+    }
+  }
+
+  /* 🔦 高亮 */
+  mark {
+    background-color: #ffedcc;
+    color: #b76b2b;
+    font-weight: bold;
+    padding: 0 2px;
+    border-radius: 3px;
+  }
+
+  /* ❌ 找不到結果 */
+  .no-result {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+  }
+
+  /* 📱 RWD 響應式 */
+  @media (max-width: 600px) {
+    .faq-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      .faq-search {
+        width: 100%; // 手機版搜尋框全寬
+      }
+    }
+  }
+}
