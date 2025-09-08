@@ -1,22 +1,23 @@
 .nailtime {
-  /* Banner 區 */
+  /* ========== Banner 區 ========== */
   .banner {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 250px;
     overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover;   /* 圖片鋪滿 */
+      filter: brightness(80%); /* 壓暗背景讓字清晰 */
     }
 
     .banner-title {
       position: absolute;
-      bottom: 20px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       font-size: 2rem;
       font-weight: bold;
       color: #fff;
@@ -26,7 +27,7 @@
     }
   }
 
-  /* 表單區 */
+  /* ========== 表單區 ========== */
   .form-container {
     display: flex;
     justify-content: center;
@@ -36,170 +37,209 @@
 
   .reservation-form {
     width: 100%;
-    max-width: 500px;
-    background: #f3e0b1; /* 奶茶色底板 */
+    max-width: 600px;
+    background: #f3e0b1;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
     .form-group {
-      display: flex;
-      flex-direction: column;
       margin-bottom: 20px;
 
       label {
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #5b4c39;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 6px;
+        color: #333;
       }
 
-      /* 一般輸入框 + 下拉選單 */
       input,
       select {
-        background-color: #fffdf8;     /* 亮奶茶白米色 */
-        color: #3e3e3e;
-        border: 1.5px solid #d6b894;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
         border-radius: 8px;
-        padding: 10px 12px;
         font-size: 1rem;
-        transition: all 0.25s ease;
+        background-color: #fff; /* 白底 */
+        color: #333;
+        outline: none;
 
-        &:hover {
-          border-color: #b8946e;
-          background-color: #fffefa;
+        &::placeholder {
+          color: #999;
         }
 
         &:focus {
-          outline: none;
-          border-color: #a07346;
-          box-shadow: 0 0 6px rgba(160, 115, 70, 0.35);
-          background-color: #ffffff;
+          border-color: #d88b32;
+          box-shadow: 0 0 0 2px rgba(216, 139, 50, 0.2);
         }
       }
 
-      /* 日期選擇器 – 使用自訂 SVG icon */
-      input[type="date"] {
-        background: #fffdf8 url("/src/assets/icon-time.svg") no-repeat right 12px center;
-        background-size: 18px 18px;   /* icon 大小 */
-        padding-right: 40px;          /* 預留右邊空間 */
-        cursor: pointer;
-      }
+      /* 日期輸入 + 📅 icon */
+      .date-wrapper {
+        display: flex;
+        align-items: center;
+        position: relative;
 
-      /* 下拉選單 – 保留原生箭頭 */
-      select {
-        appearance: auto;
-        -webkit-appearance: auto;
-        -moz-appearance: auto;
+        .date-input {
+          flex: 1;
+          padding: 12px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 1rem;
+          background-color: #fff;
+          color: #333;
+          outline: none;
+
+          /* 移除原生小日曆 */
+          &::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+          }
+          &::-moz-calendar-picker-indicator {
+            display: none;
+          }
+          &::-webkit-inner-spin-button,
+          &::-webkit-clear-button {
+            display: none;
+          }
+        }
+
+        .date-icon {
+          margin-left: -40px; /* 疊進 input 右側 */
+          font-size: 1.2rem;
+          color: #555;
+          cursor: pointer;
+          transition: color 0.2s;
+
+          &:hover {
+            color: #d88b32;
+          }
+        }
       }
     }
 
-    /* 奶茶風格送出按鈕 */
+    /* 送出按鈕 */
     .submit-btn {
+      position: relative;
       width: 100%;
       padding: 12px;
-      background-color: #d6b894;
-      color: #fffdf8;
-      font-size: 1.1rem;
-      font-weight: 600;
       border: none;
       border-radius: 8px;
+      background: #d88b32;
+      color: #fff;
+      font-size: 1.2rem;
       cursor: pointer;
-      transition: 0.3s;
+      overflow: hidden;
 
       &:hover {
-        background-color: #b8946e;
-        color: #ffffff;
-        box-shadow: 0 3px 6px rgba(160, 115, 70, 0.3);
+        background: #c27728;
       }
 
-      &:active {
-        background-color: #a07346;
-        transform: scale(0.98);
-      }
-
-      &:disabled {
-        background-color: #e5d6be;
-        color: #a8a098;
-        cursor: not-allowed;
-        box-shadow: none;
+      &::after {
+        content: "";
+        position: absolute;
+        top: var(--y);
+        left: var(--x);
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: ripple 0.6s linear;
       }
     }
   }
 
-  /* 即時提示 */
+  /* Ripple 動畫 */
+  @keyframes ripple {
+    to {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+  }
+
+  /* ========== 預覽提示 ========== */
   .preview {
-    margin-top: 20px;
-    padding: 15px;
-    background: #fff8f0;
-    border-left: 4px solid #d6b894;
-    border-radius: 8px;
+    margin-left: 20px;
     font-size: 1rem;
-    color: #5b4c39;
-    line-height: 1.5;
-    text-align: center;
-  }
-}
-
-/* Modal Overlay */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-/* Modal Box */
-.modal {
-  background: #f3f3f3;
-  border-radius: 16px;
-  padding: 40px 30px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-in-out;
-
-  .modal-icon {
-    font-size: 3rem;
-  }
-
-  p {
-    margin-top: 20px;
-    font-size: 1rem;
+    font-weight: bold;
     color: #333;
   }
 
-  .close-btn {
-    margin-top: 25px;
-    padding: 10px 20px;
-    background: #d6b894;
-    color: #fffdf8;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
+  /* ========== 彈窗 Modal ========== */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
 
-    &:hover {
-      background: #b8946e;
+  .modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+
+    .modal-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #d88b32;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #c27728;
+      }
     }
   }
-}
 
-/* 動畫 */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  /* ========== 手機版 RWD ========== */
+  @media (max-width: 600px) {
+    .reservation-form {
+      padding: 20px;
+
+      .form-group {
+        label {
+          font-size: 0.9rem;
+        }
+
+        input,
+        select {
+          font-size: 0.9rem;
+          padding: 10px;
+        }
+      }
+
+      .submit-btn {
+        font-size: 1rem;
+        padding: 10px;
+      }
+    }
+
+    .banner {
+      height: 180px;
+
+      .banner-title {
+        font-size: 1.5rem;
+        padding: 8px 16px;
+      }
+    }
   }
 }

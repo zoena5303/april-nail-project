@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import "../scss/NailTimestyle.scss";   // ✅ SCSS 檔案
-import bannerImg from "../assets/images/NailTime.jpg"; 
+import React, { useState, useRef } from "react";
+import "../scss/NailTimestyle.scss"; // ✅ SCSS 檔案
+import bannerImg from "../assets/images/NailTime.jpg";
+
 const NailTime = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [availableTimes, setAvailableTimes] = useState([]);
   const [selectedTime, setSelectedTime] = useState("");
   const [showModal, setShowModal] = useState(false);
+
+  const dateInputRef = useRef(null);
 
   const allTimes = [
     { label: "上午", times: ["10:00", "11:00", "12:00"] },
@@ -75,13 +78,23 @@ const NailTime = () => {
           {/* 預約日期 */}
           <div className="form-group">
             <label>預約日期</label>
-            <input
-              type="date"
-              required
-              min={todayDate}
-              value={selectedDate}
-              onChange={handleDateChange}
-            />
+            <div className="date-wrapper">
+              <input
+                type="date"
+                required
+                min={todayDate}
+                value={selectedDate}
+                onChange={handleDateChange}
+                ref={dateInputRef}
+                className="date-input"
+              />
+              <span
+                className="date-icon"
+                onClick={() => dateInputRef.current.showPicker()}
+              >
+                📅
+              </span>
+            </div>
           </div>
 
           {/* 預約時段 */}
@@ -127,7 +140,7 @@ const NailTime = () => {
             <input type="tel" placeholder="請輸入電話" required />
           </div>
 
-          {/* 送出按鈕 + Ripple 效果 */}
+          {/* 送出按鈕 */}
           <button
             type="submit"
             className="submit-btn"
