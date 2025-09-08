@@ -1,17 +1,15 @@
 /* ========== 全域設定 ========== */
-/*@import "./scss/ScssReset.scss";*/
 html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
   min-height: 100%;
   font-family: "Noto Sans TC", sans-serif;
-  background-color: #f8f5f0; /* ✅ 全站背景米色 */
+  background-color: #f8f5f0;
   color: #222;
-  overflow-x: hidden; /* ✅ 防止水平滾動 */
+  overflow-x: hidden;
 }
 
-/* 用 flex 排版：Navbar 上、Footer 下，中間撐開 */
 .app-wrapper {
   display: flex;
   flex-direction: column;
@@ -20,21 +18,19 @@ html, body, #root {
 
 /* ========== 中間內容 ========== */
 .page-container {
-  flex: 1;               
-  max-width: 1200px;     
+  flex: 1;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
   box-sizing: border-box;
-
-  /* ✅ 確保每頁至少跟首頁一樣高 */
   min-height: calc(100vh - 180px);
-  /* 180px ≈ Navbar + Footer 高度，可以依實際調整 */
+  /* 180px ≈ Navbar + Footer 高度，可調整 */
 }
 
 /* ========== Navbar ========== */
 .navbar {
   width: 100%;
-  background-color: #d5842a; /* ✅ 橘色 */
+  background-color: #d5842a;
   padding: 1rem 2rem;
   box-sizing: border-box;
 
@@ -64,7 +60,7 @@ html, body, #root {
 /* ========== Footer ========== */
 .footer {
   width: 100%;
-  background-color: #d6d0c7; /* ✅ 淺米色 */
+  background-color: #d6d0c7;
   padding: 2rem 0 0;
   box-sizing: border-box;
 }

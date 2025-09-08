@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./App.css"; // ✅ 用 CSS 就好
+import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -20,26 +20,33 @@ import StoreEnvironment from "./pages/StoreEnvironment";
 function App() {
   return (
     <BrowserRouter>
-      {/* Navbar 全寬 */}
       <Navbar />
 
-      {/* 中間內容區：置中 + 限寬 */}
-      <main className="page-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Aboutme" element={<Aboutme />} />
-          <Route path="/Blog" element={<Blog />} />
-          <Route path="/Browworks" element={<BrowWorks />} />
-          <Route path="/Colorexplorer" element={<ColorExplorer />} />
-          <Route path="/Faq" element={<FAQ />} />
-          <Route path="/Nailtime" element={<NailTime />} />
-          <Route path="/Nailworks" element={<NailWorks />} />
-          <Route path="/Pricing" element={<Pricing />} />
-          <Route path="/Storeenvironment" element={<StoreEnvironment />} />
-        </Routes>
-      </main>
+      <Routes>
+        {/* ✅ 首頁不包 page-container，讓影片能滿版 */}
+        <Route path="/" element={<Home />} />
 
-      {/* Footer 全寬 */}
+        {/* 其他頁面才有置中限制 */}
+        <Route
+          path="*"
+          element={
+            <main className="page-container">
+              <Routes>
+                <Route path="/Aboutme" element={<Aboutme />} />
+                <Route path="/Blog" element={<Blog />} />
+                <Route path="/Browworks" element={<BrowWorks />} />
+                <Route path="/Colorexplorer" element={<ColorExplorer />} />
+                <Route path="/Faq" element={<FAQ />} />
+                <Route path="/Nailtime" element={<NailTime />} />
+                <Route path="/Nailworks" element={<NailWorks />} />
+                <Route path="/Pricing" element={<Pricing />} />
+                <Route path="/Storeenvironment" element={<StoreEnvironment />} />
+              </Routes>
+            </main>
+          }
+        />
+      </Routes>
+
       <Footer />
     </BrowserRouter>
   );

@@ -53,26 +53,52 @@
         color: #5b4c39;
       }
 
+      /* 一般輸入框 + 下拉選單 */
       input,
       select {
-        padding: 10px 12px;
-        border: 1px solid #ccc;
+        background-color: #fffdf8;     /* 亮奶茶白米色 */
+        color: #3e3e3e;
+        border: 1.5px solid #d6b894;
         border-radius: 8px;
+        padding: 10px 12px;
         font-size: 1rem;
+        transition: all 0.25s ease;
+
+        &:hover {
+          border-color: #b8946e;
+          background-color: #fffefa;
+        }
 
         &:focus {
           outline: none;
-          border-color: #d88b32;
-          box-shadow: 0 0 5px rgba(216, 139, 50, 0.5);
+          border-color: #a07346;
+          box-shadow: 0 0 6px rgba(160, 115, 70, 0.35);
+          background-color: #ffffff;
         }
+      }
+
+      /* 日期選擇器 – 使用自訂 SVG icon */
+      input[type="date"] {
+        background: #fffdf8 url("/src/assets/icon-time.svg") no-repeat right 12px center;
+        background-size: 18px 18px;   /* icon 大小 */
+        padding-right: 40px;          /* 預留右邊空間 */
+        cursor: pointer;
+      }
+
+      /* 下拉選單 – 保留原生箭頭 */
+      select {
+        appearance: auto;
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
       }
     }
 
+    /* 奶茶風格送出按鈕 */
     .submit-btn {
       width: 100%;
       padding: 12px;
-      background-color: #d88b32;
-      color: white;
+      background-color: #d6b894;
+      color: #fffdf8;
       font-size: 1.1rem;
       font-weight: 600;
       border: none;
@@ -81,7 +107,21 @@
       transition: 0.3s;
 
       &:hover {
-        background-color: #b67126;
+        background-color: #b8946e;
+        color: #ffffff;
+        box-shadow: 0 3px 6px rgba(160, 115, 70, 0.3);
+      }
+
+      &:active {
+        background-color: #a07346;
+        transform: scale(0.98);
+      }
+
+      &:disabled {
+        background-color: #e5d6be;
+        color: #a8a098;
+        cursor: not-allowed;
+        box-shadow: none;
       }
     }
   }
@@ -91,7 +131,7 @@
     margin-top: 20px;
     padding: 15px;
     background: #fff8f0;
-    border-left: 4px solid #d88b32;
+    border-left: 4px solid #d6b894;
     border-radius: 8px;
     font-size: 1rem;
     color: #5b4c39;
@@ -107,7 +147,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,8 +178,8 @@
   .close-btn {
     margin-top: 25px;
     padding: 10px 20px;
-    background: #d88b32;
-    color: #fff;
+    background: #d6b894;
+    color: #fffdf8;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -147,7 +187,7 @@
     transition: 0.3s;
 
     &:hover {
-      background: #b67126;
+      background: #b8946e;
     }
   }
 }

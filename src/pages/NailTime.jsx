@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../scss/NailTimestyle.scss";   // ✅ SCSS 檔案
 import bannerImg from "../assets/images/NailTime.jpg"; 
-
 const NailTime = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [availableTimes, setAvailableTimes] = useState([]);
