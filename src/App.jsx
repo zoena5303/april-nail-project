@@ -1,11 +1,12 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// src/App.jsx
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+// Pages
 import Home from "./pages/Home";
 import Aboutme from "./pages/Aboutme";
 import Blog from "./pages/Blog";
@@ -17,34 +18,36 @@ import NailWorks from "./pages/NailWorks";
 import Pricing from "./pages/Pricing";
 import StoreEnvironment from "./pages/StoreEnvironment";
 
+// Layout：其他頁面才需要 page-container
+function PageLayout() {
+  return (
+    <main className="page-container">
+      <Outlet />
+    </main>
+  );
+}
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Navbar />
 
       <Routes>
-        {/* ✅ 首頁不包 page-container，讓影片能滿版 */}
+        {/* ✅ 首頁：影片滿版，不加 page-container */}
         <Route path="/" element={<Home />} />
 
-        {/* 其他頁面才有置中限制 */}
-        <Route
-          path="*"
-          element={
-            <main className="page-container">
-              <Routes>
-                <Route path="/Aboutme" element={<Aboutme />} />
-                <Route path="/Blog" element={<Blog />} />
-                <Route path="/Browworks" element={<BrowWorks />} />
-                <Route path="/Colorexplorer" element={<ColorExplorer />} />
-                <Route path="/Faq" element={<FAQ />} />
-                <Route path="/Nailtime" element={<NailTime />} />
-                <Route path="/Nailworks" element={<NailWorks />} />
-                <Route path="/Pricing" element={<Pricing />} />
-                <Route path="/Storeenvironment" element={<StoreEnvironment />} />
-              </Routes>
-            </main>
-          }
-        />
+        {/* ✅ 其他頁面：統一用 PageLayout 包起來 */}
+        <Route element={<PageLayout />}>
+          <Route path="/aboutme" element={<Aboutme />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/browworks" element={<BrowWorks />} />
+          <Route path="/colorexplorer" element={<ColorExplorer />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/nailtime" element={<NailTime />} />
+          <Route path="/nailworks" element={<NailWorks />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/storeenvironment" element={<StoreEnvironment />} />
+        </Route>
       </Routes>
 
       <Footer />
