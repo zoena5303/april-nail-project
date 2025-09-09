@@ -18,7 +18,7 @@ import NailWorks from "./pages/NailWorks";
 import Pricing from "./pages/Pricing";
 import StoreEnvironment from "./pages/StoreEnvironment";
 
-// Layout：其他頁面才需要 page-container
+// ✅ Layout：其他頁面才需要 page-container
 function PageLayout() {
   return (
     <main className="page-container">
@@ -33,7 +33,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* ✅ 首頁：影片滿版，不加 page-container */}
+        {/* ✅ 首頁：影片可滿版 */}
         <Route path="/" element={<Home />} />
 
         {/* ✅ 其他頁面：統一用 PageLayout 包起來 */}
