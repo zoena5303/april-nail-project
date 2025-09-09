@@ -2,13 +2,13 @@
   /* ===== Banner 區塊 ===== */
   .banner {
     width: 100%;
-    height: 70vh; /* 可依需求調整高度 */
+    height: 70vh;
     overflow: hidden;
 
     .banner-video {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 影片滿版裁切 */
+      object-fit: cover;
     }
   }
 
@@ -45,7 +45,6 @@
         text-decoration: none;
         background-color: #5a3a22;
         color: #fff;
-        border: none;
         padding: 10px 28px;
         border-radius: 25px;
         font-size: 1rem;
@@ -64,7 +63,7 @@
     .hero-image {
       position: relative;
       width: 100%;
-      max-width: 320px; /* ✅ 控制圖片大小 */
+      max-width: 320px;
       flex: 1;
       opacity: 0;
       transform: translateX(40px);
@@ -93,7 +92,7 @@
   /* ===== 服務卡片區 ===== */
   .services {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 桌機：2 欄 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 60px;
     padding: 60px 10%;
     background-color: #fdf9f4;
@@ -101,53 +100,139 @@
 
     .service-card {
       position: relative;
-      width: 220px;
+      width: 240px;
       text-align: center;
 
       .bg-shape {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 130%; /* 比圖片稍大，托底 */
+        width: 140%;
         transform: translate(-50%, -50%);
+        z-index: 0;
+        transition: transform 0.3s ease;
+      }
+
+      .card-box {
+        position: relative;
+        background-color: #f3e0b1; /* ✅ 米色底 */
+        padding: 15px;
+        border-radius: 12px;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .service-img {
+          width: 100%;
+          border-radius: 8px;
+          margin-bottom: 10px;
+          transition: transform 0.3s ease;
+        }
+
+        h3 {
+          margin: 8px 0;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #5a3a22;
+        }
+
+        .service-btn {
+          margin-top: 8px;
+          background-color: #5a3a22;
+          color: #fff;
+          border: none;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #7a5c3d;
+          }
+        }
+      }
+
+      /* ✅ Hover 效果 */
+      &:hover {
+        .card-box {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+
+          .service-img {
+            transform: scale(1.05);
+          }
+        }
+
+        .bg-shape {
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+      }
+    }
+  }
+
+  /* ===== 聯絡資訊區 ===== */
+  .contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f3e0b1;
+    padding: 60px 10%;
+    gap: 40px;
+
+    .contact-info {
+      position: relative;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .info-bg {
+        position: absolute;
+        width: 100%;
+        max-width: 400px;
         z-index: 0;
       }
 
-      .service-img {
+      .info-text {
         position: relative;
-        width: 100%;
-        border-radius: 12px;
         z-index: 1;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        color: #222;
+        font-size: 1rem;
+        line-height: 1.8;
+        font-weight: 500;
       }
+    }
 
-      h3 {
-        margin-top: 12px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #5a3a22;
-        position: relative;
-        z-index: 2;
-      }
+    .contact-map {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+      justify-content: center;
 
-      .service-btn {
-        margin-top: 8px;
-        display: inline-block;
-        text-decoration: none;
-        background-color: #5a3a22;
-        color: #fff;
-        border: none;
-        padding: 6px 16px;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        z-index: 2;
-        position: relative;
-        transition: 0.3s;
+      .map-container {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
-        &:hover {
-          background-color: #7a5c3d;
+        iframe {
+          width: 100%;
+          height: 100%;
         }
+      }
+
+      .store-img {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
     }
   }
@@ -227,9 +312,39 @@
     }
 
     .services {
-      grid-template-columns: 1fr; /* 手機版：單欄 */
+      grid-template-columns: 1fr;
       gap: 40px;
       padding: 40px 20px;
+    }
+
+    .contact {
+      flex-direction: column;
+      text-align: center;
+      padding: 40px 20px;
+
+      .contact-info {
+        margin-bottom: 30px;
+
+        .info-bg {
+          max-width: 300px;
+        }
+      }
+
+      .contact-map {
+        flex-direction: column;
+
+        .store-img {
+          order: -1;
+          width: 150px;
+          height: 150px;
+          margin-bottom: 20px;
+        }
+
+        .map-container {
+          width: 150px;
+          height: 150px;
+        }
+      }
     }
   }
 }
