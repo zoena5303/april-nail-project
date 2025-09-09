@@ -1,4 +1,12 @@
 .home {
+  /* ===== 共用容器：限制內容寬度 ===== */
+  .section-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
   /* ===== Banner 區塊 ===== */
   .banner {
     width: 100%;
@@ -14,11 +22,16 @@
 
   /* ===== Hero 區塊 ===== */
   .hero {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 60px 10%;
     background-color: #fdf9f4;
+
+    .hero-inner {
+      @extend .section-container;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 0;
+      gap: 40px;
+    }
 
     .hero-text {
       max-width: 420px;
@@ -72,10 +85,10 @@
 
       .bg-shape {
         position: absolute;
-        bottom: -15px;
+        bottom: -30px;
         left: 50%;
         transform: translateX(-50%);
-        width: 120%;
+        width: 150%;   // ✅ 放大背景色塊
         z-index: 0;
       }
 
@@ -85,37 +98,54 @@
         border-radius: 16px;
         z-index: 1;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+
+      &:hover {
+        .main-img {
+          transform: scale(1.05) translateY(-8px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
       }
     }
   }
 
   /* ===== 服務卡片區 ===== */
   .services {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 60px;
-    padding: 60px 10%;
     background-color: #fdf9f4;
-    justify-items: center;
+
+    .service-inner {
+      @extend .section-container;
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 60px;
+      padding: 60px 0;
+      justify-items: center;
+    }
 
     .service-card {
       position: relative;
-      width: 240px;
+      width: 220px;
       text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease-out forwards;
+      animation-delay: 0.4s;
 
       .bg-shape {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 140%;
+        width: 180%;   // ✅ 放大背景色塊
         transform: translate(-50%, -50%);
         z-index: 0;
-        transition: transform 0.3s ease;
+        transition: transform 0.4s ease;
       }
 
       .card-box {
         position: relative;
-        background-color: #f3e0b1; /* ✅ 米色底 */
+        background-color: #f3e0b1;
         padding: 15px;
         border-radius: 12px;
         z-index: 1;
@@ -123,13 +153,13 @@
         flex-direction: column;
         align-items: center;
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
 
         .service-img {
           width: 100%;
           border-radius: 8px;
           margin-bottom: 10px;
-          transition: transform 0.3s ease;
+          transition: transform 0.4s ease;
         }
 
         h3 {
@@ -156,19 +186,19 @@
         }
       }
 
-      /* ✅ Hover 效果 */
+      /* Hover 動態效果 */
       &:hover {
         .card-box {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+          transform: scale(1.05) translateY(-8px);
+          box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
 
           .service-img {
-            transform: scale(1.05);
+            transform: scale(1.08);
           }
         }
 
         .bg-shape {
-          transform: translate(-50%, -50%) scale(1.05);
+          transform: translate(-50%, -50%) scale(1.08);
         }
       }
     }
@@ -176,12 +206,16 @@
 
   /* ===== 聯絡資訊區 ===== */
   .contact {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     background-color: #f3e0b1;
-    padding: 60px 10%;
-    gap: 40px;
+
+    .contact-inner {
+      @extend .section-container;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 0;
+      gap: 40px;
+    }
 
     .contact-info {
       position: relative;
@@ -237,114 +271,48 @@
     }
   }
 
-  /* ===== 動畫定義 ===== */
+  /* ===== 動畫 ===== */
   @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
   }
-
   @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
   }
-
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   /* ===== RWD 響應式 ===== */
   @media (max-width: 1024px) {
-    .hero {
-      padding: 40px 6%;
-
-      .hero-image {
-        max-width: 280px;
-        .bg-shape {
-          width: 115%;
-          bottom: -12px;
-        }
-      }
+    .hero .hero-inner {
+      padding: 40px 0;
     }
   }
 
   @media (max-width: 768px) {
-    .hero {
+    .hero .hero-inner {
       flex-direction: column;
       text-align: center;
-      padding: 40px 20px;
-
-      .hero-text {
-        margin-bottom: 30px;
-        animation: fadeInUp 1s ease-out forwards;
-        transform: translateY(30px);
-      }
-
-      .hero-image {
-        max-width: 240px;
-        animation: fadeInUp 1s ease-out forwards;
-        animation-delay: 0.3s;
-        transform: translateY(30px);
-
-        .bg-shape {
-          width: 125%;
-          bottom: -10px;
-        }
-      }
+      padding: 40px 0;
     }
 
-    .services {
+    .services .service-inner {
       grid-template-columns: 1fr;
       gap: 40px;
-      padding: 40px 20px;
+      padding: 40px 0;
     }
 
-    .contact {
+    .contact .contact-inner {
       flex-direction: column;
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px 0;
+    }
 
-      .contact-info {
-        margin-bottom: 30px;
-
-        .info-bg {
-          max-width: 300px;
-        }
-      }
-
-      .contact-map {
-        flex-direction: column;
-
-        .store-img {
-          order: -1;
-          width: 150px;
-          height: 150px;
-          margin-bottom: 20px;
-        }
-
-        .map-container {
-          width: 150px;
-          height: 150px;
-        }
-      }
+    .hero-image .bg-shape {
+      bottom: -20px; // 手機版色塊位置微調
     }
   }
 }
