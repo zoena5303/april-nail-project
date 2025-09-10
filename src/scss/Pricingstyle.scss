@@ -1,0 +1,73 @@
+.pricing {
+  text-align: center;
+  padding: 60px 20px;
+
+  /* 背景圖套用 */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; // 視差效果
+
+  .pricing-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #5a3a22;
+    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+  }
+
+  .pricing-card {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 40px 60px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.55); // 半透明白
+    backdrop-filter: blur(12px); // 毛玻璃效果
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .pricing-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+  }
+
+  .pricing-column {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #d5842a;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        justify-content: space-between; /* 項目左，價格右 */
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+        padding: 6px 0;
+        line-height: 1.8;
+
+        span:last-child {
+          font-weight: 600;
+          color: #5a3a22;
+        }
+      }
+    }
+  }
+
+  .note {
+    margin-top: 20px;
+    color: #d33;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+}
