@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "../scss/Aboutmestyle.scss";
 
-// 匯入圖片（請確認這三張圖片真的在 src/assets/images/ 底下）
+// 匯入圖片
 import aboutme4 from "../assets/images/aboutme4.jpg";
 import aboutme5 from "../assets/images/aboutme5.jpg";
 import aboutme6 from "../assets/images/aboutme6.jpg";
