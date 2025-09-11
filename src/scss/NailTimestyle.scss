@@ -1,19 +1,17 @@
 .nailtime {
-  /* ========== Banner 區 ========== */
+  /* ===== Banner 區 ===== */
   .banner {
     position: relative;
-    width: 100vw;                     
-    height: 300px;                    
-    margin-left: calc(-50vw + 50%);   
-    margin-top: -40px;                
+    width: 100vw;
+    height: 300px;
+    margin-left: calc(-50vw + 50%);
     overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;   
-      display: block;
-      filter: brightness(80%); 
+      object-fit: cover;
+      filter: brightness(80%);
     }
 
     .banner-title {
@@ -30,7 +28,7 @@
     }
   }
 
-  /* ========== 表單區 ========== */
+  /* ===== 表單區 ===== */
   .form-container {
     display: flex;
     justify-content: center;
@@ -40,101 +38,77 @@
 
   .reservation-form {
     width: 100%;
-    max-width: 480px;   
+    max-width: 480px;
     background: #f3e0b1;
     padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 
     .form-group {
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-      label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 6px;
-        color: #333;
-      }
+    label {
+      font-weight: 600;
+      color: #5a3a22;
+    }
 
-      input,
-      select {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 1rem;
-        background-color: #fff;
-        color: #333;
+    input,
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #fff;
+      color: #333;
+
+      &:focus {
+        border-color: #d5842a;
         outline: none;
-
-        &::placeholder {
-          color: #999;
-        }
-
-        &:focus {
-          border-color: #d88b32;
-          box-shadow: 0 0 0 2px rgba(216, 139, 50, 0.2);
-        }
-      }
-
-      /* 日期輸入 + 📅 icon */
-      .date-wrapper {
-        display: flex;
-        align-items: center;
-        position: relative;
-
-        .date-input {
-          flex: 1;
-          padding: 12px;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          font-size: 1rem;
-          background-color: #fff;
-          color: #333;
-          outline: none;
-
-          &::-webkit-calendar-picker-indicator {
-            display: none;
-            -webkit-appearance: none;
-          }
-          &::-moz-calendar-picker-indicator {
-            display: none;
-          }
-          &::-webkit-inner-spin-button,
-          &::-webkit-clear-button {
-            display: none;
-          }
-        }
-
-        .date-icon {
-          margin-left: -40px;
-          font-size: 1.2rem;
-          color: #555;
-          cursor: pointer;
-          transition: color 0.2s;
-
-          &:hover {
-            color: #d88b32;
-          }
-        }
+        box-shadow: 0 0 0 2px rgba(213, 132, 42, 0.2);
       }
     }
 
-    /* 送出按鈕 */
+    /* 日期輸入器 + icon */
+    .date-wrapper {
+      position: relative;
+
+      .date-input {
+        width: 100%;
+      }
+
+      .date-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+    }
+
+    /* 送出按鈕 + ripple */
     .submit-btn {
       position: relative;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #d88b32;
-      color: #fff;
-      font-size: 1.2rem;
-      cursor: pointer;
       overflow: hidden;
+      background: #d5842a;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
 
       &:hover {
-        background: #c27728;
+        background: #b96d22;
       }
 
       &::after {
@@ -144,92 +118,125 @@
         left: var(--x);
         width: 0;
         height: 0;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.4);
         border-radius: 50%;
         transform: translate(-50%, -50%);
+        pointer-events: none;
         animation: ripple 0.6s linear;
       }
     }
 
-    /* ========== 注意事項區塊 ========== */
+    @keyframes ripple {
+      from {
+        width: 0;
+        height: 0;
+        opacity: 0.6;
+      }
+      to {
+        width: 400px;
+        height: 400px;
+        opacity: 0;
+      }
+    }
+
     .notice {
-      margin-top: 25px;
-      padding: 15px 20px;
-      border-left: 4px solid #d88b32;
-      background: #fff8ef;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      background: #fff;
+      padding: 15px;
       border-radius: 8px;
+      color: #444;
+      line-height: 1.6;
 
       h4 {
-        font-size: 1rem;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #5a3a22;
-      }
-
-      p {
-        font-size: 0.9rem;
-        line-height: 1.6;
-        color: #333;
-        white-space: pre-line; /* ✅ 保留換行格式 */
+        margin-bottom: 6px;
+        color: #b96d22;
       }
     }
   }
 
-  /* Ripple 動畫 */
-  @keyframes ripple {
-    to {
-      width: 300px;
-      height: 300px;
+  /* ===== 即時提示 Preview ===== */
+  .preview {
+    margin-left: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    color: #333;
+    font-size: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+
+    strong {
+      font-size: 1.1rem;
+      color: #d5842a;
+    }
+  }
+
+  /* ===== Modal 彈跳視窗 ===== */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 14px;
+    text-align: center;
+    max-width: 320px;
+    width: 80%;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+    animation: popIn 0.35s ease-out;
+  }
+
+  .modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .close-btn {
+    margin-top: 20px;
+    background: #d5842a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+
+    &:hover {
+      background: #b96d22;
+    }
+  }
+
+  /* ===== 動畫效果 ===== */
+  @keyframes fadeIn {
+    from {
       opacity: 0;
     }
-  }
-
-  /* ========== RWD 響應式 ========== */
-  @media (max-width: 992px) {
-    .reservation-form {
-      max-width: 400px; 
+    to {
+      opacity: 1;
     }
   }
 
-  @media (max-width: 600px) {
-    .banner {
-      height: 200px; 
-      margin-top: -15px; 
-      .banner-title {
-        font-size: 1.5rem;
-        padding: 8px 16px;
-      }
+  @keyframes popIn {
+    from {
+      transform: scale(0.8);
+      opacity: 0;
     }
-
-    .reservation-form {
-      max-width: 90%; 
-      padding: 20px;
-
-      .form-group {
-        label {
-          font-size: 0.9rem;
-        }
-        input,
-        select {
-          font-size: 0.9rem;
-          padding: 10px;
-        }
-      }
-
-      .submit-btn {
-        font-size: 1rem;
-        padding: 10px;
-      }
-
-      .notice {
-        padding: 12px 16px;
-        h4 {
-          font-size: 0.9rem;
-        }
-        p {
-          font-size: 0.85rem;
-        }
-      }
+    to {
+      transform: scale(1);
+      opacity: 1;
     }
   }
 }

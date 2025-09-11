@@ -29,8 +29,12 @@
   .pricing-container {
     display: flex;
     justify-content: space-between;
-    gap: 50px;
+    gap: 50px; // 手機 & 平板預設間距
     flex-wrap: wrap;
+
+    @media (min-width: 992px) {
+      gap: 100px; // ✅ 桌機版加大中間間距
+    }
   }
 
   .pricing-column {
@@ -41,7 +45,7 @@
     h3 {
       font-size: 1.4rem;
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       color: #d5842a;
     }
 
@@ -52,13 +56,25 @@
       li {
         display: flex;
         justify-content: space-between; /* 項目左，價格右 */
+        align-items: center;
         border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
-        padding: 6px 0;
-        line-height: 1.8;
+
+        /* ✅ 行距調整，左欄更緊湊 */
+        padding: 4px 0;
+        line-height: 1.5;
+        letter-spacing: 0.2px;
+        gap: 40px; // 左右文字間距（項目與價格之間）
+
+        span:first-child {
+          flex: 1;
+          min-width: 160px; // ✅ 保持名稱區域一致寬度
+        }
 
         span:last-child {
           font-weight: 600;
           color: #5a3a22;
+          margin-left: 20px;
+          white-space: nowrap; // 避免價格換行
         }
       }
     }

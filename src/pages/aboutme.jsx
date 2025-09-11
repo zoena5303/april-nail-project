@@ -1,13 +1,9 @@
-// src/pages/aboutme.jsx
 import React from 'react'
-import '../scss/Aboutmestyle.scss'
 
-function AboutMe() {
+const Aboutme = () => {
   return (
-    <div className="about-container">
-      <h1>關於我們</h1>
-    </div>
+    <div>Aboutme</div>
   )
 }
 
-export default AboutMe
+export default Aboutme

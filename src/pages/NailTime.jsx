@@ -66,13 +66,13 @@ const NailTime = () => {
 
   return (
     <div className="nailtime">
-      {/* Banner 區 */}
+      {/* ===== Banner 區 ===== */}
       <div className="banner">
         <img src={bannerImg} alt="預約表單 Banner" />
         <h2 className="banner-title">預約表單</h2>
       </div>
 
-      {/* 表單區 */}
+      {/* ===== 表單區 ===== */}
       <div className="form-container">
         <form className="reservation-form" onSubmit={handleSubmit}>
           {/* 預約日期 */}
@@ -134,10 +134,18 @@ const NailTime = () => {
             <input type="text" placeholder="請輸入姓名" required />
           </div>
 
-          {/* 電話 */}
+          {/* 電話（必須 10 碼數字） */}
           <div className="form-group">
             <label>電話</label>
-            <input type="tel" placeholder="請輸入電話" required />
+            <input
+              type="tel"
+              placeholder="請輸入電話"
+              required
+              pattern="[0-9]{10}"
+              minLength={10}
+              maxLength={10}
+              title="請輸入正確的10位數字電話號碼"
+            />
           </div>
 
           {/* 送出按鈕 */}
@@ -183,10 +191,10 @@ const NailTime = () => {
         )}
       </div>
 
-      {/* 彈窗 Modal */}
+      {/* ===== 彈窗 Modal ===== */}
       {showModal && (
-        <div className="modal-overlay">
-          <div className="modal">
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-icon">📅</div>
             <p>已收到您的預約，Peggy 會再與你聯絡</p>
             <button className="close-btn" onClick={() => setShowModal(false)}>
