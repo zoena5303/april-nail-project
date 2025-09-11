@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/april-nail-project/",   // ⚠️ 要跟 GitHub repo 名字完全一樣
+  base: "/april-nail-project/",   // ✅ 必須跟 GitHub repo 名字一樣
 });

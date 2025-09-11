@@ -18,7 +18,7 @@ import NailWorks from "./pages/NailWorks";
 import Pricing from "./pages/Pricing";
 import StoreEnvironment from "./pages/StoreEnvironment";
 
-// ✅ Layout：其他頁面才需要 page-container
+// ✅ Layout：其他頁面才需要 page-container 包裹
 function PageLayout() {
   return (
     <main className="page-container">
@@ -29,14 +29,15 @@ function PageLayout() {
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    // ✅ basename 要跟 vite.config.js 的 base 一樣
+    <BrowserRouter basename="/april-nail-project">
       <Navbar />
 
       <Routes>
-        {/* ✅ 首頁：影片可滿版 */}
+        {/* 首頁 */}
         <Route path="/" element={<Home />} />
 
-        {/* ✅ 其他頁面：統一用 PageLayout 包起來 */}
+        {/* 其他頁面 */}
         <Route element={<PageLayout />}>
           <Route path="/aboutme" element={<Aboutme />} />
           <Route path="/blog" element={<Blog />} />
