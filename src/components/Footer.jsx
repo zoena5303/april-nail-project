@@ -31,7 +31,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4>追蹤我們</h4>
           <div className="social-icons">
-            <a href="#"><FaInstagram /></a>
+            <a href="https://www.instagram.com/april_nails._/"><FaInstagram /></a>
             <a href="#"><SiLine /></a>
             <a href="#"><FaTiktok /></a>
           </div>

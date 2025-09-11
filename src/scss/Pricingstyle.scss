@@ -1,89 +1,140 @@
 .pricing {
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px; // ✅ 上下留白加大，避免壓迫感
 
-  /* 背景圖套用 */
+  /* ===== 背景設定 ===== */
   background-size: cover;
   background-position: center;
   background-attachment: fixed; // 視差效果
+  position: relative;
+  z-index: 0;
 
+  // ✅ 背景加一層柔霧遮罩，讓文字更清楚
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: -1;
+  }
+
+  /* ===== 標題 ===== */
   .pricing-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #5a3a22;
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: #9c5a05; // ✅ 改成品牌色
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
   }
 
+  /* ===== 卡片區 ===== */
   .pricing-card {
-    max-width: 950px;
+    max-width: 1100px; // ✅ 桌機版再放寬一點
     margin: 0 auto;
-    padding: 40px 60px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.55); // 半透明白
-    backdrop-filter: blur(12px); // 毛玻璃效果
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 50px 70px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.7); // 半透明白
+    backdrop-filter: blur(15px); // 毛玻璃更柔和
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   }
 
+  /* ===== 兩欄排版 ===== */
   .pricing-container {
     display: flex;
     justify-content: space-between;
-    gap: 50px; // 手機 & 平板預設間距
+    gap: 80px; // ✅ 預設留白更大
     flex-wrap: wrap;
 
-    @media (min-width: 992px) {
-      gap: 100px; // ✅ 桌機版加大中間間距
+    @media (min-width: 1200px) {
+      gap: 120px; // ✅ 桌機版大間距
     }
   }
 
+  /* ===== 單欄 ===== */
   .pricing-column {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px; // ✅ 更寬一點，避免擠字
     text-align: left;
 
     h3 {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
       color: #d5842a;
+      border-bottom: 2px solid rgba(213, 132, 42, 0.2); // ✅ 小小分隔線
+      padding-bottom: 6px;
     }
 
     ul {
       list-style: none;
       padding: 0;
+      margin: 0;
 
       li {
         display: flex;
-        justify-content: space-between; /* 項目左，價格右 */
+        justify-content: space-between;
         align-items: center;
         border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
 
-        /* ✅ 行距調整，左欄更緊湊 */
-        padding: 4px 0;
-        line-height: 1.5;
-        letter-spacing: 0.2px;
-        gap: 40px; // 左右文字間距（項目與價格之間）
+        padding: 8px 0; // ✅ 行距加大
+        line-height: 1.6;
+        letter-spacing: 0.3px;
+        gap: 40px;
 
         span:first-child {
           flex: 1;
-          min-width: 160px; // ✅ 保持名稱區域一致寬度
+          min-width: 180px; // ✅ 名稱區域更一致
         }
 
         span:last-child {
-          font-weight: 600;
+          font-weight: 700;
+          font-size: 1.05rem;
           color: #5a3a22;
           margin-left: 20px;
-          white-space: nowrap; // 避免價格換行
+          white-space: nowrap;
         }
       }
     }
   }
 
+  /* ===== 備註 ===== */
   .note {
-    margin-top: 20px;
+    margin-top: 30px;
     color: #d33;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== 手機版調整 ===== */
+  @media (max-width: 768px) {
+    .pricing-card {
+      padding: 30px 20px;
+    }
+
+    .pricing-container {
+      flex-direction: column; // ✅ 手機單欄排列
+      gap: 40px;
+    }
+
+    .pricing-column {
+      h3 {
+        font-size: 1.3rem;
+      }
+      ul li {
+        flex-direction: column; // ✅ 名稱與價格上下顯示
+        align-items: flex-start;
+
+        span:last-child {
+          margin-left: 0;
+          margin-top: 4px;
+          color: #9c5a05; // ✅ 價格在手機版用品牌色點出來
+        }
+      }
+    }
   }
 }
