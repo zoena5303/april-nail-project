@@ -1,0 +1,53 @@
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 55px;   /* 稍微放大，讓箭頭更清楚 */
+  height: 55px;
+  border-radius: 50%;
+  border: none;
+  background-color: #9c5a05; // 品牌色
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+  /* 預設隱藏 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+
+  /* Hover 效果 */
+  &:hover {
+    background-color: #7a4604; // hover 深色
+    transform: translateY(-3px) scale(1.1); // 浮起效果
+  }
+
+  /* 顯示時 */
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Icon 樣式保險控制 */
+  svg {
+    fill: #fff;     // 強制白色
+    width: 26px;    // 箭頭寬度
+    height: 26px;   // 箭頭高度
+    pointer-events: none; // 避免 icon 阻擋點擊
+  }
+
+  /* 手機版 (螢幕 <=768px) 縮小一點 */
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

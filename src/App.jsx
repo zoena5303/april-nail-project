@@ -5,6 +5,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop"; // ✅ 新增：返回頂端按鈕
 
 // Pages
 import Home from "./pages/Home";
@@ -52,6 +53,7 @@ function App() {
       </Routes>
 
       <Footer />
+      <BackToTop /> {/* ✅ 固定放在最外層，確保所有頁面都能使用 */}
     </BrowserRouter>
   );
 }

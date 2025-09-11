@@ -7,7 +7,8 @@
     width: 100vw;
     height: 60vh;
     margin-left: calc(-50vw + 50%);
-    margin-top: -40px;
+    margin-top: 0; /* 🔥 移除負值，避免被 Navbar 壓住 */
+    padding-top: 60px; /* 🔥 加入上方留白，視覺更舒適 */
     overflow: hidden;
 
     img {
@@ -29,8 +30,8 @@
     &::before {
       content: "";
       position: absolute;
-      width: 400px;   /* 縮小版 */
-      height: 280px;  /* 縮小版 */
+      width: 400px;
+      height: 280px;
       background: #f3e0b1;
       border-radius: 50% 40% 60% 50% / 60% 50% 40% 50%;
       top: 50%;
@@ -89,34 +90,55 @@
   }
 
   /* ===== 特殊對齊 ===== */
-  /* 接待櫃檯 → 文字靠右 */
   .env-block.reception .env-text {
     text-align: right;
     padding-right: 40px;
   }
 
-  /* 美甲區 → 文字靠右，但往左移 */
   .env-block.nail {
-    flex-direction: row; /* 圖片在左，文字在右 */
-
+    flex-direction: row;
     .env-text {
       text-align: right;
-      padding-right: 20px; /* 原本 40px → 改小，避免太貼邊 */
-      margin-left: 40px;   /* 🔥 往左移一些 */
+      padding-right: 20px;
+      margin-left: 40px;
     }
   }
 
-  /* 霧眉區 → 文字靠右 */
-  .env-block.brow .env-text {
-    text-align: right;
-    padding-right: 40px;
+  .env-block.brow {
+    flex-direction: column; /* 🔥 改直向排列 */
+    align-items: center;
+    text-align: center;
+
+    .env-text {
+      margin-bottom: 16px;
+    }
+
+    .env-images {
+      display: grid; /* 🔥 改用 grid 排版 */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      justify-items: center;
+
+      .img-box {
+        width: 100%;
+        max-width: 180px;
+        height: 120px;
+      }
+
+      /* 🔥 最後一張置中 */
+      .img-box:last-child {
+        grid-column: 1 / span 2;
+        max-width: 220px;
+        height: 150px;
+      }
+    }
   }
 
   /* ===== RWD 手機版 ===== */
   @media (max-width: 768px) {
     .banner {
       height: 40vh;
-      margin-top: -20px;
+      padding-top: 50px; /* 🔥 手機版保留更多上方間距 */
     }
 
     .env-block {
@@ -133,7 +155,7 @@
         margin-bottom: 8px;
         text-align: center !important;
         padding: 0;
-        margin-left: 0; /* 🔥 手機版移除左邊距，統一置中 */
+        margin-left: 0;
       }
 
       .env-images {
