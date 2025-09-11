@@ -4,7 +4,7 @@
   padding: 40px 20px;
   color: #3c2f2f;
 
-  /* Header：標題 + 搜尋框 */
+  /* ===== Header：標題 + 搜尋框 ===== */
   .faq-header {
     display: flex;
     justify-content: space-between;
@@ -73,23 +73,19 @@
     margin-bottom: 20px;
   }
 
-  /* FAQ 卡片 */
+  /* ===== FAQ 卡片 ===== */
   .faq-list {
     .faq-item {
-      background: #F5E6CC; // 奶茶色
       border-radius: 12px;
-      padding: 18px 22px;
       margin-bottom: 18px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
       overflow: hidden;
+      transition: all 0.3s ease;
 
-      &.active {
-        background: linear-gradient(180deg, #F3E0B1 0%, #F5E6CC 100%);
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-      }
-
+      /* 問題區塊（上半部） */
       .faq-question {
+        background: #f5e6cc; // 奶茶色
+        padding: 16px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -108,15 +104,17 @@
         }
       }
 
+      /* 答案區塊（下半部） */
       .faq-answer {
+        background: #fffaf3; // 更淺的底色，和上面分層
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.5s ease, opacity 0.4s ease;
+        transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.3s ease;
         font-size: 16px;
         line-height: 1.7;
         color: #333;
-        margin-top: 8px;
         opacity: 0;
+        padding: 0 20px; // 收合時不顯示上下 padding
 
         p {
           margin: 0;
@@ -124,9 +122,14 @@
         }
       }
 
-      &.active .faq-answer {
-        max-height: 500px;
-        opacity: 1;
+      &.active {
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+
+        .faq-answer {
+          max-height: 500px;
+          opacity: 1;
+          padding: 16px 20px; // 展開時才有內距
+        }
       }
     }
   }

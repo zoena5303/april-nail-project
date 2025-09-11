@@ -22,13 +22,13 @@ import brow3 from "../assets/images/Store3b.png";
 const StoreEnvironment = () => {
   return (
     <div className="store-env">
-      {/* Banner */}
+      {/* ===== Banner ===== */}
       <div className="banner">
         <img src={storeBanner} alt="店內環境 Banner" />
       </div>
 
-      {/* 接待櫃檯 */}
-      <section className="env-block">
+      {/* ===== 接待櫃檯 ===== */}
+      <section className="env-block reception">
         <div className="env-text">
           <h2>接待櫃檯</h2>
           <p>迎接你的第一站</p>
@@ -40,21 +40,21 @@ const StoreEnvironment = () => {
         </div>
       </section>
 
-      {/* 美甲區 */}
-      <section className="env-block reverse">
-        <div className="env-text">
-          <h2>美甲區</h2>
-          <p>迎接你的第二站</p>
-        </div>
+      {/* ===== 美甲區 ===== */}
+      <section className="env-block nail">
         <div className="env-images collage">
           <div className="img-box medium"><img src={nail1} alt="美甲區1" /></div>
           <div className="img-box large"><img src={nail2} alt="美甲區2" /></div>
           <div className="img-box small"><img src={nail3} alt="美甲區3" /></div>
         </div>
+        <div className="env-text">
+          <h2>美甲區</h2>
+          <p>迎接你的第二站</p>
+        </div>
       </section>
 
-      {/* 霧眉區 */}
-      <section className="env-block">
+      {/* ===== 霧眉區 ===== */}
+      <section className="env-block brow">
         <div className="env-text">
           <h2>霧眉區</h2>
           <p>迎接你的第三站</p>

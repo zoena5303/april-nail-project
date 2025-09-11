@@ -5,6 +5,7 @@
     width: 100vw;
     height: 300px;
     margin-left: calc(-50vw + 50%);
+    margin-top: -40px;   /* ✅ 往上移動，去掉上方留白 */
     overflow: hidden;
 
     img {

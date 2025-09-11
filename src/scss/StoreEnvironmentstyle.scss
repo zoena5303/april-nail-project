@@ -4,15 +4,16 @@
   /* ===== Banner 區 ===== */
   .banner {
     position: relative;
-    width: 100vw;   /* 滿版 */
-    height: 60vh;   /* 高度可依需求調整 */
-    margin-left: calc(-50vw + 50%); /* 抵銷 page-container 的置中限制 */
+    width: 100vw;
+    height: 60vh;
+    margin-left: calc(-50vw + 50%);
+    margin-top: -40px;
     overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 圖片鋪滿 */
+      object-fit: cover;
       display: block;
     }
   }
@@ -22,35 +23,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 100px 0;
+    margin: 40px 0;
     position: relative;
 
-    /* 進場動畫 */
-    opacity: 0;
-    transform: translateY(40px);
-    animation: fadeUp 1s ease forwards;
-    animation-delay: 0.2s;
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* 奶茶色不規則底塊 */
     &::before {
       content: "";
       position: absolute;
-      width: 500px;
-      height: 350px;
+      width: 400px;   /* 縮小版 */
+      height: 280px;  /* 縮小版 */
       background: #f3e0b1;
-      border-radius: 50% 40% 60% 50% / 60% 50% 40% 50%; /* 不規則圓形 */
+      border-radius: 50% 40% 60% 50% / 60% 50% 40% 50%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 0;
-      opacity: 0.35;
+      opacity: 0.3;
     }
 
     .env-text {
@@ -61,10 +48,11 @@
         font-size: 2rem;
         font-weight: bold;
         color: #5a3a22;
+        margin-bottom: 4px;
       }
       p {
-        font-size: 1.2rem;
-        margin-top: 8px;
+        font-size: 1rem;
+        margin-top: 0;
         color: #9a7b59;
       }
     }
@@ -73,7 +61,7 @@
       flex: 2;
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 14px;
       z-index: 1;
 
       .img-box {
@@ -95,54 +83,66 @@
       }
     }
 
-    /* 圖片大小 */
-    .large { width: 240px; height: 180px; }
+    .large { width: 260px; height: 190px; }
     .medium { width: 200px; height: 150px; }
     .small { width: 160px; height: 120px; }
   }
 
-  /* 美甲區 → 文字在右邊 */
-  .env-block.reverse {
-    flex-direction: row-reverse;
+  /* ===== 特殊對齊 ===== */
+  /* 接待櫃檯 → 文字靠右 */
+  .env-block.reception .env-text {
+    text-align: right;
+    padding-right: 40px;
+  }
+
+  /* 美甲區 → 文字靠右，但往左移 */
+  .env-block.nail {
+    flex-direction: row; /* 圖片在左，文字在右 */
 
     .env-text {
       text-align: right;
+      padding-right: 20px; /* 原本 40px → 改小，避免太貼邊 */
+      margin-left: 40px;   /* 🔥 往左移一些 */
     }
+  }
+
+  /* 霧眉區 → 文字靠右 */
+  .env-block.brow .env-text {
+    text-align: right;
+    padding-right: 40px;
   }
 
   /* ===== RWD 手機版 ===== */
   @media (max-width: 768px) {
     .banner {
       height: 40vh;
+      margin-top: -20px;
     }
 
     .env-block {
       flex-direction: column;
       text-align: center;
-      margin: 60px 0;
+      margin: 30px 0;
 
       &::before {
-        width: 280px;
-        height: 200px;
+        width: 220px;
+        height: 160px;
       }
 
       .env-text {
-        margin-bottom: 20px;
+        margin-bottom: 8px;
+        text-align: center !important;
+        padding: 0;
+        margin-left: 0; /* 🔥 手機版移除左邊距，統一置中 */
       }
 
       .env-images {
         justify-content: center;
+        gap: 10px;
 
-        .large { width: 180px; height: 130px; }
-        .medium { width: 150px; height: 110px; }
-        .small { width: 120px; height: 90px; }
-      }
-    }
-
-    .env-block.reverse {
-      flex-direction: column; /* 手機版不需要反向 */
-      .env-text {
-        text-align: center;
+        .large { width: 200px; height: 140px; }
+        .medium { width: 180px; height: 130px; }
+        .small { width: 150px; height: 110px; }
       }
     }
   }
