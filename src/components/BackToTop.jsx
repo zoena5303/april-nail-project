@@ -1,7 +1,7 @@
 // src/components/BackToTop.jsx
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import "../App.scss"; // ✅ 已把 back-to-top 樣式整合到 App.scss
+import "../../App.scss";
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
