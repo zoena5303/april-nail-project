@@ -60,6 +60,14 @@
       &:hover span {
         color: #222;
       }
+
+      /* ✅ 當前頁面 NavLink active 狀態 */
+      &.active span {
+        color: #9c5a05;     /* 品牌色 */
+        font-weight: 700;   /* 加粗 */
+        border-bottom: 2px solid #9c5a05; /* 可選：加底線 */
+        padding-bottom: 2px; /* 與文字間隔 */
+      }
     }
 
     /* ✅ 特殊補救：指尖保健室 */

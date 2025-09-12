@@ -103,7 +103,7 @@
       }
     }
 
-    /* 左右互換 */
+    /* 左右互換（桌機版用） */
     &.reverse {
       flex-direction: row-reverse;
 
@@ -125,13 +125,24 @@
   }
 }
 
-/* RWD */
+/* RWD 手機版 */
 @media (max-width: 768px) {
   .aboutme-section {
     flex-direction: column;
     text-align: center;
 
+    /* ✅ 手機版取消反轉：圖片在上 */
+    &.reverse {
+      flex-direction: column;
+
+      .aboutme-text {
+        margin: 0;
+      }
+    }
+
     .circle {
+      width: 140px;   /* ✅ 手機版縮小圖片 */
+      height: 140px;
       margin-bottom: 20px;
     }
 
