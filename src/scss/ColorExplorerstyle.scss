@@ -1,129 +1,87 @@
 .color-explorer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 40px 20px;
-  text-align: center;
-
-  .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #5a3a22;
-  }
-
-  .card-container {
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
-  }
-
-  /* 進度條 */
-  .progress-bar {
-    width: 100%;
-    height: 20px;
-    background: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px;
-
-    .progress {
-      height: 100%;
-      background: #4caf50;
-      color: #fff;
-      font-size: 0.9rem;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: width 0.4s ease;
-    }
-  }
-
-  .card-wrapper {
-    position: relative;
-    min-height: 250px; /* 預留高度避免切換晃動 */
-  }
 
   .card {
-    width: 100%;
-    padding: 30px 20px;
-    border-radius: 16px;
     background: #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
     text-align: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: fadeIn 0.4s ease;
+  }
 
-    h3 {
-      margin: 20px 0;
-      font-size: 1.3rem;
-      color: #8b5b42;
-    }
+  .card-img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
 
-    .options {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 20px;
+  .btn-primary {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #d88b32; // 品牌橘色
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
 
-      button {
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: 1px solid #e0c9a6;
-        background: #fdf9f4;
-        color: #5a3a22;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-          background: #e0c9a6;
-          color: #fff;
-        }
-
-        &.active {
-          background: #d88b32;
-          color: #fff;
-        }
-      }
-    }
-
-    .next-btn,
-    .reset-btn {
-      padding: 10px 25px;
-      border: none;
-      border-radius: 25px;
-      background: #d88b32;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover:enabled {
-        background: #b46d25;
-      }
-
-      &:disabled {
-        background: #ccc;
-        cursor: not-allowed;
-      }
-    }
-
-    &.result-card {
-      background: #f3e0b1;
+    &:hover {
+      background-color: #9c5a05;
     }
   }
 
-  /* 卡片切換動畫 */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(15px);
+  .tone-options {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+
+    .tone-btn {
+      padding: 10px 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &.active {
+        border-color: #d88b32;
+        background: #fff7ef;
+        color: #9c5a05; // ✅ 文字看得清楚
+        font-weight: bold;
+      }
+
+      &:hover {
+        border-color: #9c5a05;
+      }
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+
+    button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      background-color: #f0d4b7;
+      color: #333;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #d88b32;
+        color: #fff;
+      }
     }
   }
 }
