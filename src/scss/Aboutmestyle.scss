@@ -125,29 +125,35 @@
   }
 }
 
-/* RWD 手機版 */
+/* 📱 RWD 手機版 */
 @media (max-width: 768px) {
   .aboutme-section {
     flex-direction: column;
     text-align: center;
 
-    /* ✅ 手機版取消反轉：圖片在上 */
+    .circle {
+      width: 140px;   /* ✅ 手機版縮小圖片 */
+      height: 140px;
+      margin: 0 auto 20px auto;  /* ✅ 圖片置中並留間距 */
+    }
+
+    .aboutme-text {
+      margin: 0;
+      text-align: center;
+
+      h3 {
+        display: block;   /* ✅ 標題獨立一行 */
+        margin-top: 10px;
+      }
+    }
+
+    /* ✅ 手機版 reverse 也統一：圖片在上 → 標題 → 文字 */
     &.reverse {
       flex-direction: column;
 
       .aboutme-text {
         margin: 0;
       }
-    }
-
-    .circle {
-      width: 140px;   /* ✅ 手機版縮小圖片 */
-      height: 140px;
-      margin-bottom: 20px;
-    }
-
-    .aboutme-text {
-      margin: 0;
     }
   }
 }
