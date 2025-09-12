@@ -1,5 +1,5 @@
 .aboutme-page {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
   text-align: center;
@@ -7,7 +7,7 @@
   .aboutme-title {
     font-size: 28px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: #9C5A05;
   }
 
@@ -17,12 +17,13 @@
     margin-bottom: 40px;
   }
 
+  /* ===== 每個區塊 ===== */
   .aboutme-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 40px;
-    text-align: left;
+    gap: 40px;
+    margin-bottom: 60px;
     padding: 30px;
     border-radius: 12px;
 
@@ -34,16 +35,25 @@
       background-color: #f3ddc7;
     }
 
-    /* 圓圈圖片 */
+    &.reverse {
+      flex-direction: row-reverse; /* ✅ 桌機時圖片與文字反轉 */
+    }
+
+    /* 圖片圓框 */
     .circle {
-      width: 180px;
-      height: 180px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       overflow: hidden;
       flex-shrink: 0;
-      opacity: 0;
-      transform: scale(0.8);
+      opacity: 0; /* fade-in 初始 */
+      transform: translateY(20px);
       transition: all 0.8s ease;
+
+      &.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
       img {
         width: 100%;
@@ -51,24 +61,15 @@
         object-fit: cover;
         display: block;
       }
-
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-      }
-
-      &.fade-in {
-        opacity: 1;
-        transform: scale(1);
-      }
     }
 
-    /* 文字區塊 */
+    /* 文字內容 */
     .aboutme-text {
       flex: 1;
-      margin-left: 30px;
-      opacity: 0;
-      transform: translateY(30px);
+      text-align: left;
+      color: #8B5B42;
+      opacity: 0; /* fade-in 初始 */
+      transform: translateY(20px);
       transition: all 0.8s ease;
 
       &.fade-in {
@@ -77,82 +78,32 @@
       }
 
       h3 {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         color: #9C5A05;
-        position: relative;
-        display: inline-block;
-
-        &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -4px;
-          width: 0%;
-          height: 3px;
-          background: #9C5A05;
-          animation: underline-slide 0.8s ease forwards;
-        }
       }
 
       p {
-        font-size: 16px;
         line-height: 1.8;
-        color: #8B5B42;
-      }
-    }
-
-    /* 左右互換（桌機版用） */
-    &.reverse {
-      flex-direction: row-reverse;
-
-      .aboutme-text {
-        margin-left: 0;
-        margin-right: 30px;
+        font-size: 16px;
       }
     }
   }
-}
 
-/* 底線動畫 */
-@keyframes underline-slide {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* 📱 RWD 手機版 */
-@media (max-width: 768px) {
-  .aboutme-section {
-    flex-direction: column;
-    text-align: center;
-
-    .circle {
-      width: 140px;   /* ✅ 手機版縮小圖片 */
-      height: 140px;
-      margin: 0 auto 20px auto;  /* ✅ 圖片置中並留間距 */
-    }
-
-    .aboutme-text {
-      margin: 0;
+  /* ===== RWD 手機版 ===== */
+  @media (max-width: 768px) {
+    .aboutme-section {
+      flex-direction: column; /* ✅ 手機直向 */
       text-align: center;
 
-      h3 {
-        display: block;   /* ✅ 標題獨立一行 */
-        margin-top: 10px;
+      &.reverse {
+        flex-direction: column; /* ✅ 即使有 reverse，手機也統一上下排 */
       }
-    }
-
-    /* ✅ 手機版 reverse 也統一：圖片在上 → 標題 → 文字 */
-    &.reverse {
-      flex-direction: column;
 
       .aboutme-text {
-        margin: 0;
+        text-align: center;
+        margin-top: 20px;
       }
     }
   }
