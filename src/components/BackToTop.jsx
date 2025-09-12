@@ -1,30 +1,31 @@
+// src/components/BackToTop.jsx
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import "../scss/BackToTopstyle.scss";
+import "../App.scss"; // ✅ 已把 back-to-top 樣式整合到 App.scss
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // ✅ 優先監聽 page-container，否則 fallback window
-    const container = document.querySelector(".page-container") || window;
+    // 嘗試抓取子頁面的滾動容器
+    const container = document.querySelector(".page-container");
+    const target = container || window;
 
-    const toggleVisibility = () => {
-      const scrollTop =
-        container === window ? window.scrollY : container.scrollTop;
-      setVisible(scrollTop > 300);
+    const handleScroll = () => {
+      const scrollTop = container ? container.scrollTop : window.scrollY;
+      setVisible(scrollTop > 300); // 超過 300px 才顯示按鈕
     };
 
-    container.addEventListener("scroll", toggleVisibility);
-    return () => container.removeEventListener("scroll", toggleVisibility);
+    target.addEventListener("scroll", handleScroll);
+    return () => target.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    const container = document.querySelector(".page-container") || window;
-    if (container === window) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
+    const container = document.querySelector(".page-container");
+    if (container) {
       container.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
