@@ -1,24 +1,31 @@
-// src/components/BackToTop.jsx
 import React, { useState, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
-import "../scss/BackToTopstyle.scss"; // 確認這個檔案存在
+import "../scss/BackToTopstyle.scss";
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // ✅ 優先監聽 page-container，否則 fallback window
+    const container = document.querySelector(".page-container") || window;
+
     const toggleVisibility = () => {
-      setVisible(window.scrollY > 300); // 滾動超過 300px 顯示
+      const scrollTop =
+        container === window ? window.scrollY : container.scrollTop;
+      setVisible(scrollTop > 300);
     };
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+
+    container.addEventListener("scroll", toggleVisibility);
+    return () => container.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // 平滑滾動
-    });
+    const container = document.querySelector(".page-container") || window;
+    if (container === window) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      container.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -27,8 +34,7 @@ const BackToTop = () => {
       onClick={scrollToTop}
       aria-label="返回頂端"
     >
-      {/* ✅ 強制指定白色 + 大小，避免被 SCSS 蓋掉 */}
-      <FaArrowUp color="#fff" size={28} />
+      <FaArrowUp />
     </button>
   );
 };
