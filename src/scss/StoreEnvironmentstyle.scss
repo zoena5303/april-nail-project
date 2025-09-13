@@ -7,7 +7,7 @@
     width: 100vw;
     height: 60vh;
     margin-left: calc(-50vw + 50%);
-    margin-top: -40px;
+    margin-top: -50px;   /* ✅ 再推上去避免留白 */
     overflow: hidden;
 
     img {
@@ -20,7 +20,7 @@
 
     .banner-title {
       position: absolute;
-      top: 60%; 
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 2.5rem;
@@ -84,7 +84,7 @@
       z-index: 1;
 
       .img-box {
-        flex: 1 1 calc(50% - 20px);  /* ✅ 手機二欄式 */
+        flex: 1 1 calc(50% - 20px);  /* ✅ 預設二欄式 */
         max-width: calc(50% - 20px);
 
         border-radius: 16px;
@@ -107,26 +107,22 @@
     }
   }
 
-  /* ===== 特殊對齊 ===== */
+  /* ===== 特殊對齊設定 ===== */
   .env-block.reception .env-text {
     text-align: right;
     padding-right: 40px;
   }
 
-  /* 美甲區 → 圖片靠近文字 */
   .env-block.nail {
     flex-direction: row;
-    justify-content: center;
 
     .env-images {
       justify-content: flex-end;
     }
 
     .env-text {
-      flex: 1;
       text-align: left;
       padding-left: 20px;
-      margin-left: 0;
     }
   }
 
@@ -139,7 +135,7 @@
   @media (max-width: 992px) {
     .banner {
       height: 45vh;
-      margin-top: -30px;
+      margin-top: -40px; /* ✅ 再貼齊一點 */
     }
 
     .banner .banner-title {
@@ -161,7 +157,6 @@
         margin-bottom: 12px;
         text-align: center !important;
         padding: 0;
-        margin-left: 0;
         max-width: 100%;
       }
 
@@ -169,7 +164,7 @@
         justify-content: center;
 
         .img-box {
-          flex: 1 1 calc(50% - 12px); /* ✅ 平板二欄 */
+          flex: 1 1 calc(50% - 12px);
           max-width: calc(50% - 12px);
         }
       }
@@ -180,12 +175,12 @@
   @media (max-width: 600px) {
     .banner {
       height: 35vh;
-      margin-top: -20px;
+      margin-top: -30px; /* ✅ 更貼近頂端 */
     }
 
     .banner .banner-title {
-      font-size: 1.8rem;
-      padding: 8px 16px;
+      font-size: 1.6rem;
+      padding: 8px 14px;
       letter-spacing: 2px;
     }
 
@@ -194,15 +189,15 @@
       gap: 20px;
 
       .env-text {
-        h2 { font-size: 1.5rem; }
-        p { font-size: 0.95rem; }
+        h2 { font-size: 1.4rem; }
+        p { font-size: 0.9rem; }
       }
 
       .env-images {
         gap: 12px;
 
         .img-box {
-          flex: 1 1 calc(50% - 12px); /* ✅ 手機二欄 */
+          flex: 1 1 calc(50% - 12px);
           max-width: calc(50% - 12px);
         }
       }
@@ -241,22 +236,9 @@
       user-select: none;
     }
 
-    .close {
-      top: 30px;
-      right: 40px;
-    }
-
-    .prev {
-      top: 50%;
-      left: 40px;
-      transform: translateY(-50%);
-    }
-
-    .next {
-      top: 50%;
-      right: 40px;
-      transform: translateY(-50%);
-    }
+    .close { top: 30px; right: 40px; }
+    .prev  { top: 50%; left: 40px; transform: translateY(-50%); }
+    .next  { top: 50%; right: 40px; transform: translateY(-50%); }
 
     .close:hover,
     .prev:hover,
