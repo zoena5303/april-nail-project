@@ -150,13 +150,45 @@
 
   /* === Step 1: 膚色 === */
   .hand-preview {
+    position: relative;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
 
     .hand-img {
       max-width: 90%;
       border-radius: 12px;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    &.白皙::after {
+      background: rgba(255, 220, 200, 0.35);
+      opacity: 1;
+    }
+
+    &.自然::after {
+      background: rgba(240, 200, 150, 0.35);
+      opacity: 1;
+    }
+
+    &.健康::after {
+      background: rgba(200, 140, 90, 0.35);
+      opacity: 1;
     }
   }
 
@@ -253,15 +285,13 @@
 
     .style-options-glass {
       position: absolute;
-      bottom: 80px; /* ✅ 往上移動 */
+      bottom: 80px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       justify-content: center;
       gap: 12px;
-
-      flex-wrap: nowrap; /* 桌機版保持水平 */
-
+      flex-wrap: nowrap;
       background: rgba(255, 255, 255, 0.25);
       padding: 12px 20px;
       border-radius: 16px;
@@ -297,14 +327,13 @@
     }
   }
 
-  /* 手機版 Step3 → 2×2 方格 */
   @media (max-width: 480px) {
     .style-preview {
       .style-options-glass {
         flex-wrap: wrap;
         width: 85%;
         gap: 10px;
-        bottom: 70px; /* ✅ 手機版也上移 */
+        bottom: 70px;
 
         .style-btn {
           flex: 1 1 45%;
@@ -369,7 +398,6 @@
       justify-content: center;
       gap: 20px;
 
-      /* ✅ 趕緊預約 → 橘色漸層 */
       .btn-primary {
         background: linear-gradient(90deg, #d88b32, #9c5a05);
         color: #fff;

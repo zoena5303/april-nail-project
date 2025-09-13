@@ -1,12 +1,14 @@
+// src/pages/ColorExplorer.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../scss/ColorExplorerstyle.scss";
 
 // 匯入圖片
-import color1 from "../assets/images/color1.jpg"; // Step1 膚色手
-import color3 from "../assets/images/color3.jpg"; // Step2 甲型圖
-import Service2 from "../assets/images/Service2.png"; // Step3 款式背景
-import color5 from "../assets/images/color5.jpg"; // Step4 結果背景
+import color1 from "../assets/images/color1.jpg";       // Step0 封面圖
+import colorhand2 from "../assets/images/colorhand2.jpg"; // ✅ Step1 膚色手
+import color3 from "../assets/images/color3.jpg";       // Step2 甲型圖
+import Service2 from "../assets/images/Service2.png";   // Step3 款式背景
+import color5 from "../assets/images/color5.jpg";       // Step4 結果背景
 
 const ColorExplorer = () => {
   const [step, setStep] = useState(0);
@@ -59,8 +61,8 @@ const ColorExplorer = () => {
             </div>
             <p className="progress-text">Step 1 / 4</p>
             <h3>選擇你的膚色</h3>
-            <div className="hand-preview">
-              <img src={color1} alt="hand" className="hand-img" />
+            <div className={`hand-preview ${selectedTone || ""}`}>
+              <img src={colorhand2} alt="hand" className="hand-img" />
             </div>
             <div className="tone-options">
               {tones.map((tone) => (
