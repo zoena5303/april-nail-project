@@ -3,57 +3,77 @@
 
   /* ===== Banner 區 ===== */
   .banner {
-    position: relative;
-    width: 100vw;
-    height: 60vh;
-    margin-left: calc(-50vw + 50%);
-    margin-top: -40px;
-    overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 60vh;
+  margin-left: calc(-50vw + 50%);
+  margin-top: -40px;
+  overflow: hidden;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(80%); /* ✅ 稍微壓暗背景，文字更清楚 */
   }
+
+  .banner-title {
+    position: absolute;
+    top: 60%;                 /* ✅ 往下移一點 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 12px 28px;
+    border-radius: 10px;
+    letter-spacing: 4px;
+  }
+}
+
 
   /* ===== 區塊拼貼 ===== */
   .env-block {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 40px 0;
+    margin: 100px 0;
+    gap: 60px;
     position: relative;
 
     &::before {
       content: "";
       position: absolute;
-      width: 400px;   /* 縮小版 */
-      height: 280px;  /* 縮小版 */
+      width: 420px;
+      height: 300px;
       background: #f3e0b1;
       border-radius: 50% 40% 60% 50% / 60% 50% 40% 50%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       z-index: 0;
-      opacity: 0.3;
+      opacity: 0.15;
+      filter: blur(40px);
     }
 
     .env-text {
       flex: 1;
       z-index: 1;
+      max-width: 400px;
 
       h2 {
         font-size: 2rem;
         font-weight: bold;
         color: #5a3a22;
-        margin-bottom: 4px;
+        margin-bottom: 12px;
       }
       p {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-top: 0;
         color: #9a7b59;
+        line-height: 1.6;
       }
     }
 
@@ -61,7 +81,7 @@
       flex: 2;
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 20px;
       z-index: 1;
 
       .img-box {
@@ -69,6 +89,7 @@
         overflow: hidden;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         transition: transform 0.4s ease;
+        cursor: pointer;
 
         img {
           width: 100%;
@@ -83,67 +104,169 @@
       }
     }
 
-    .large { width: 260px; height: 190px; }
+    .large { width: 280px; height: 200px; }
     .medium { width: 200px; height: 150px; }
     .small { width: 160px; height: 120px; }
   }
 
   /* ===== 特殊對齊 ===== */
-  /* 接待櫃檯 → 文字靠右 */
   .env-block.reception .env-text {
     text-align: right;
     padding-right: 40px;
   }
 
-  /* 美甲區 → 文字靠右，但往左移 */
+  /* 美甲區 → 圖片靠近文字 */
   .env-block.nail {
-    flex-direction: row; /* 圖片在左，文字在右 */
+    flex-direction: row;
+    justify-content: center;
+
+    .env-images {
+      flex: 2;
+      display: flex;
+      justify-content: flex-end; /* ✅ 圖片往右推 */
+    }
 
     .env-text {
-      text-align: right;
-      padding-right: 20px; /* 原本 40px → 改小，避免太貼邊 */
-      margin-left: 40px;   /* 🔥 往左移一些 */
+      flex: 1;
+      text-align: left;
+      padding-left: 20px;
+      margin-left: 0;
     }
   }
 
-  /* 霧眉區 → 文字靠右 */
   .env-block.brow .env-text {
     text-align: right;
     padding-right: 40px;
   }
 
-  /* ===== RWD 手機版 ===== */
-  @media (max-width: 768px) {
+  /* ===== 平板 (≤992px) ===== */
+  @media (max-width: 992px) {
     .banner {
-      height: 40vh;
-      margin-top: -20px;
+      height: 45vh;
+      margin-top: -30px;
+    }
+
+    .banner .banner-title {
+      font-size: 2rem;
+      padding: 10px 20px;
     }
 
     .env-block {
       flex-direction: column;
       text-align: center;
-      margin: 30px 0;
+      margin: 70px 0;
+      gap: 30px;
 
       &::before {
-        width: 220px;
-        height: 160px;
+        display: none;
       }
 
       .env-text {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         text-align: center !important;
         padding: 0;
-        margin-left: 0; /* 🔥 手機版移除左邊距，統一置中 */
+        margin-left: 0;
+        max-width: 100%;
       }
 
       .env-images {
         justify-content: center;
-        gap: 10px;
 
-        .large { width: 200px; height: 140px; }
-        .medium { width: 180px; height: 130px; }
-        .small { width: 150px; height: 110px; }
+        .large { width: 90%; height: auto; }
+        .medium { width: 80%; height: auto; }
+        .small { width: 70%; height: auto; }
       }
+    }
+  }
+
+  /* ===== 手機 (≤600px) ===== */
+  @media (max-width: 600px) {
+    .banner {
+      height: 35vh;
+      margin-top: -20px;
+    }
+
+    .banner .banner-title {
+      font-size: 1.8rem;
+      padding: 8px 16px;
+      letter-spacing: 2px;
+    }
+
+    .env-block {
+      margin: 50px 0;
+      gap: 20px;
+
+      .env-text {
+        h2 { font-size: 1.5rem; }
+        p { font-size: 0.95rem; }
+      }
+
+      .env-images {
+        gap: 12px;
+
+        .large,
+        .medium,
+        .small {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  /* ===== 燈箱效果 ===== */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .close,
+    .prev,
+    .next {
+      position: absolute;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .close {
+      top: 30px;
+      right: 40px;
+    }
+
+    .prev {
+      top: 50%;
+      left: 40px;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      top: 50%;
+      right: 40px;
+      transform: translateY(-50%);
+    }
+
+    .close:hover,
+    .prev:hover,
+    .next:hover {
+      color: #f3e0b1;
     }
   }
 }
