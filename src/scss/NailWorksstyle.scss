@@ -2,36 +2,39 @@
 .banner {
   position: relative;
   top: 0;
-  margin: 0;                  /* 移除多餘間距 */
+  margin: 0;                  
   padding: 0;
   width: 100vw;               /* 滿版 */
   height: 60vh;               /* Hero 高度 */
   margin-left: calc(-50vw + 50%);
+  margin-top: -40px;          /* ✅ 往上推，避免留白 */
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
-    display: block;           /* 去掉 inline 空隙 */
-    object-fit: cover;        /* 填滿裁切 */
+    display: block;           
+    object-fit: cover;        
     filter: brightness(85%);
   }
 
   /* 平板 */
   @media (max-width: 992px) {
     height: 40vh;
+    margin-top: -30px;        /* ✅ RWD 微調 */
   }
 
   /* 手機 */
   @media (max-width: 600px) {
     height: 30vh;
+    margin-top: -20px;        /* ✅ RWD 微調 */
   }
 }
 
 .nail-works {
   text-align: center;
   background: #fdf9f4;
-  margin-top: 0;   /* 與 Banner 緊貼 */
+  margin-top: 0;   
   padding-top: 0;
 
   /* ===== 頁面標題 ===== */
@@ -44,7 +47,6 @@
     position: relative;
     display: inline-block;
 
-    /* 奶茶色漸層底線 */
     &::after {
       content: "";
       display: block;

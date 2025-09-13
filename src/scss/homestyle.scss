@@ -9,14 +9,28 @@
 
   /* ===== Banner 區塊 ===== */
   .banner {
-    width: 100%;
-    height: 70vh;
+    position: relative;
+    width: 100vw;
+    height: 70vh;                     /* ✅ 影片滿版高度 */
+    margin-left: calc(-50vw + 50%);
+    margin-top: 0;                    /* ✅ 不再往下推，置頂 */
     overflow: hidden;
 
     .banner-video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover;              /* ✅ 保持滿版裁切 */
+      display: block;
+    }
+
+    /* 平板 */
+    @media (max-width: 992px) {
+      height: 50vh;
+    }
+
+    /* 手機 */
+    @media (max-width: 600px) {
+      height: 40vh;
     }
   }
 
@@ -88,7 +102,7 @@
         bottom: -30px;
         left: 50%;
         transform: translateX(-50%);
-        width: 150%;   // ✅ 放大背景色塊
+        width: 150%;
         z-index: 0;
       }
 
@@ -137,7 +151,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 180%;   // ✅ 放大背景色塊
+        width: 180%;
         transform: translate(-50%, -50%);
         z-index: 0;
         transition: transform 0.4s ease;
@@ -186,7 +200,6 @@
         }
       }
 
-      /* Hover 動態效果 */
       &:hover {
         .card-box {
           transform: scale(1.05) translateY(-8px);
@@ -312,7 +325,7 @@
     }
 
     .hero-image .bg-shape {
-      bottom: -20px; // 手機版色塊位置微調
+      bottom: -20px;
     }
   }
 }

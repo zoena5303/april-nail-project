@@ -1,0 +1,153 @@
+.brow-works {
+  text-align: center;
+  background: #fdf9f4;
+
+  /* ===== Banner 區 ===== */
+  .banner {
+    position: relative;
+    width: 100vw;
+    height: 300px;
+    margin-left: calc(-50vw + 50%);
+    margin-top: -40px; // 去掉頂部留白
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(85%);
+      display: block;
+    }
+
+    .banner-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 992px) {
+      height: 220px;
+      .banner-title {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      height: 180px;
+      .banner-title {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  /* ===== 篩選按鈕 ===== */
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap; // ✅ 手機自動換行
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 20px;
+      background: #fff;
+      color: #c68a3c;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #c68a3c;
+        color: #fff;
+      }
+
+      &.active {
+        background: #c68a3c;
+        color: #fff;
+      }
+    }
+
+    @media (max-width: 600px) {
+      gap: 10px;
+      button {
+        font-size: 0.85rem;
+        padding: 6px 14px;
+      }
+    }
+  }
+
+  /* ===== 左右對比示意圖 ===== */
+  .compare-box {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 320px;
+    margin: 0 auto 50px auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+
+    .left-box {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: #bbb; // 灰色示意
+      z-index: 2;
+    }
+
+    .right-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #6a9bd8; // 藍色示意
+      z-index: 1;
+    }
+
+    /* 垂直分隔線 */
+    .divider-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(255, 255, 255, 0.8);
+      pointer-events: none; // 不擋滑桿
+      z-index: 3;
+      transition: left 0.1s ease-out;
+    }
+
+    /* 拉桿 */
+    .slider {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      cursor: pointer;
+      z-index: 5;
+    }
+  }
+
+  /* ===== RWD 調整 ===== */
+  @media (max-width: 992px) {
+    .compare-box {
+      height: 250px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .compare-box {
+      height: 200px;
+    }
+  }
+}
