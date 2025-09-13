@@ -1,153 +1,94 @@
 .brow-works {
-  text-align: center;
+  padding: 40px 20px;
   background: #fdf9f4;
+  text-align: center;
+  position: relative;
 
-  /* ===== Banner 區 ===== */
-  .banner {
-    position: relative;
-    width: 100vw;
-    height: 300px;
-    margin-left: calc(-50vw + 50%);
-    margin-top: -40px; // 去掉頂部留白
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(85%);
-      display: block;
-    }
-
-    .banner-title {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-      font-size: 2rem;
-      font-weight: bold;
-      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    @media (max-width: 992px) {
-      height: 220px;
-      .banner-title {
-        font-size: 1.6rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      height: 180px;
-      .banner-title {
-        font-size: 1.2rem;
-      }
-    }
+  .title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #9c5a05;
   }
 
-  /* ===== 篩選按鈕 ===== */
-  .filter-buttons {
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #666;
+  }
+
+  .scroll-wrapper {
+    position: relative;
     display: flex;
-    flex-wrap: wrap; // ✅ 手機自動換行
+    align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin: 25px 0;
+  }
 
-    button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 20px;
-      background: #fff;
-      color: #c68a3c;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
+  .scroll-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch;
 
-      &:hover {
-        background: #c68a3c;
-        color: #fff;
-      }
-
-      &.active {
-        background: #c68a3c;
-        color: #fff;
-      }
-    }
-
-    @media (max-width: 600px) {
-      gap: 10px;
-      button {
-        font-size: 0.85rem;
-        padding: 6px 14px;
-      }
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 
-  /* ===== 左右對比示意圖 ===== */
-  .compare-box {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    height: 320px;
-    margin: 0 auto 50px auto;
-    overflow: hidden;
+  .scroll-item {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 180px;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
 
-    .left-box {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      background: #bbb; // 灰色示意
-      z-index: 2;
+    &.gray {
+      background: #888;
     }
-
-    .right-box {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: #6a9bd8; // 藍色示意
-      z-index: 1;
+    &.blue {
+      background: #2a72d4;
     }
-
-    /* 垂直分隔線 */
-    .divider-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: rgba(255, 255, 255, 0.8);
-      pointer-events: none; // 不擋滑桿
-      z-index: 3;
-      transition: left 0.1s ease-out;
+    &.pink {
+      background: #d45a8b;
     }
-
-    /* 拉桿 */
-    .slider {
-      position: absolute;
-      bottom: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      cursor: pointer;
-      z-index: 5;
+    &.green {
+      background: #4caf50;
+    }
+    &.brown {
+      background: #9c5a05;
     }
   }
 
-  /* ===== RWD 調整 ===== */
-  @media (max-width: 992px) {
-    .compare-box {
-      height: 250px;
-    }
-  }
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(156, 90, 5, 0.8);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    width: 40px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s;
 
-  @media (max-width: 600px) {
-    .compare-box {
-      height: 200px;
+    &:hover {
+      background: rgba(180, 106, 11, 0.9);
+    }
+
+    &.left {
+      left: -50px;   // ✅ 往外推
+    }
+
+    &.right {
+      right: -50px;  // ✅ 往外推
     }
   }
 }

@@ -1,56 +1,41 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import "../scss/BrowWorksstyle.scss";
-import browBanner from "../assets/images/Browbanner.jpg";
 
 const BrowWorks = () => {
-  const [sliderPos, setSliderPos] = useState(50); // 初始在中間
+  const scrollRef = useRef(null);
 
-  const handleSlider = (e) => {
-    setSliderPos(Number(e.target.value));
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 280; // 每次移動的寬度
+      if (direction === "left") {
+        scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      } else {
+        scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    }
   };
 
   return (
     <div className="brow-works">
-      {/* ===== Banner 區 ===== */}
-      <div className="banner">
-        <img src={browBanner} alt="Brow Banner" />
-        <h2 className="banner-title">霧眉作品區</h2>
-      </div>
+      <h2 className="title">霧眉作品示意</h2>
+      <p className="subtitle">👉 左右滑動或點箭頭</p>
 
-      {/* 篩選按鈕 */}
-      <div className="filter-buttons">
-        <button className="active">全部</button>
-        <button>韓式平眉</button>
-        <button>歐美眉</button>
-        <button>霧感眉</button>
-      </div>
+      <div className="scroll-wrapper">
+        <button className="arrow left" onClick={() => scroll("left")}>
+          &#8249;
+        </button>
 
-      {/* 左右對比示意圖 */}
-      <div className="compare-box">
-        {/* 左側灰色區域（可調整寬度） */}
-        <div
-          className="left-box"
-          style={{ width: `${sliderPos}%` }}
-        ></div>
+        <div className="scroll-container" ref={scrollRef}>
+          <div className="scroll-item gray">示意圖 1</div>
+          <div className="scroll-item blue">示意圖 2</div>
+          <div className="scroll-item pink">示意圖 3</div>
+          <div className="scroll-item green">示意圖 4</div>
+          <div className="scroll-item brown">示意圖 5</div>
+        </div>
 
-        {/* 右側藍色背景始終存在 */}
-        <div className="right-box"></div>
-
-        {/* 垂直分隔線 */}
-        <div
-          className="divider-line"
-          style={{ left: `${sliderPos}%` }}
-        ></div>
-
-        {/* 滑桿 */}
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={sliderPos}
-          onChange={handleSlider}
-          className="slider"
-        />
+        <button className="arrow right" onClick={() => scroll("right")}>
+          &#8250;
+        </button>
       </div>
     </div>
   );

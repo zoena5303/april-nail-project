@@ -35,6 +35,8 @@
     justify-content: center;
     padding: 40px 20px;
     background-color: #f9f5f0;
+    gap: 20px; /* ✅ 預覽和表單分開一點 */
+    flex-wrap: wrap; /* ✅ 手機時能自動換行 */
   }
 
   .reservation-form {
@@ -80,19 +82,38 @@
       }
     }
 
-    /* ===== 日期輸入器（修正文字 & icon 對齊） ===== */
-    input[type="date"] {
-      display: flex;              /* ✅ 讓內容可置中 */
-      align-items: center;        /* ✅ 文字垂直置中 */
-      height: 48px;
-      padding: 0 12px;
-      line-height: normal;        /* 避免字被壓縮 */
-    }
+    /* ===== 日期輸入器（修正 icon 對齊） ===== */
+    .date-wrapper {
+      position: relative;
+      width: 100%;
 
-    input[type="date"]::-webkit-calendar-picker-indicator {
-      position: relative;         /* ✅ 確保在框內 */
-      height: 70%;                /* ✅ 縮放 icon 大小 */
-      cursor: pointer;
+      .date-input {
+        width: 100%;
+        height: 48px;
+        padding: 0 40px 0 12px;   /* ✅ 預留右邊空間 */
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        box-sizing: border-box;
+
+        /* 移除原生日曆小圖示 */
+        &::-webkit-calendar-picker-indicator {
+          opacity: 0;
+          position: absolute;
+          right: 10px;
+          cursor: pointer;
+        }
+      }
+
+      .date-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 20px;
+        cursor: pointer;
+        pointer-events: auto; /* ✅ 確保可點擊 */
+      }
     }
 
     /* 下拉選單（保留原生箭頭） */
@@ -179,6 +200,24 @@
     strong {
       font-size: 1.1rem;
       color: #d5842a;
+    }
+
+    /* 📱 手機版：移到表單上方 */
+    @media (max-width: 768px) {
+      order: -1;            /* ❗移到最上方 */
+      margin-left: 0;
+      margin-bottom: 20px;  /* 與表單留空 */
+      align-self: stretch;  /* 撐滿 */
+      text-align: center;
+    }
+
+    /* 📱 超小螢幕：字體縮小 */
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+
+      strong {
+        font-size: 1rem;
+      }
     }
   }
 

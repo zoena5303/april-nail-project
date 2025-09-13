@@ -88,6 +88,7 @@ const NailTime = () => {
                 ref={dateInputRef}
                 className="date-input"
               />
+              {/* 自訂日曆 icon，固定在右側 */}
               <span
                 className="date-icon"
                 onClick={() => dateInputRef.current.showPicker()}
