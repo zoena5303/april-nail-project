@@ -1,0 +1,300 @@
+.blog-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  text-align: center;
+
+  /* 標題 */
+  .blog-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #9c5a05; // 品牌色
+    margin-bottom: 10px;
+
+    @media (max-width: 992px) {
+      font-size: 28px;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
+  }
+
+  .blog-subtitle {
+    font-size: 18px;
+    color: #8b5b42;
+    margin-bottom: 25px;
+
+    @media (max-width: 992px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+  }
+
+  /* 🔍 搜尋框 */
+  .blog-search {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 16px;
+      width: 280px;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+      }
+
+      input {
+        border: none;
+        outline: none;
+        font-size: 14px;
+        color: #8b5b42;
+        flex: 1;
+        background: transparent;
+
+        &::placeholder {
+          color: #c68c53;
+        }
+      }
+
+      &:focus-within {
+        box-shadow: 0 4px 12px rgba(216, 139, 50, 0.3);
+      }
+
+      @media (max-width: 600px) {
+        width: 90%;
+      }
+    }
+  }
+
+  /* 🏷️ 分類按鈕 */
+  .blog-categories {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+
+    .category-btn {
+      background: #f3ddc7;
+      border: none;
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        background: #d88b32;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      &.active {
+        background: linear-gradient(45deg, #d88b32, #f3e0b1);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .category-btn {
+        font-size: 13px;
+        padding: 6px 14px;
+      }
+    }
+  }
+
+  /* 📑 卡片排列 */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  }
+
+  /* 📰 單張卡片 */
+  .blog-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+      img {
+        transform: scale(1.05); /* ✅ hover 放大效果 */
+      }
+
+      .blog-tag {
+        opacity: 1; /* ✅ hover 時淡入 */
+        transform: translateY(0);
+      }
+    }
+
+    .image-wrapper {
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+
+        @media (max-width: 992px) {
+          height: 180px;
+        }
+
+        @media (max-width: 600px) {
+          height: 160px;
+        }
+      }
+
+      /* 🏷️ 類別標籤 */
+      .blog-tag {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        color: #fff;
+        opacity: 0; /* 預設隱藏 */
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+      }
+
+      /* 不同分類顏色 */
+      .blog-tag.指尖的保養 {
+        background: #6bb07d;
+      }
+
+      .blog-tag.美甲設計 {
+        background: #d88b32;
+      }
+
+      .blog-tag.霧眉保養 {
+        background: #c67fa8;
+      }
+    }
+
+    .blog-content {
+      padding: 20px;
+      flex: 1;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 8px;
+
+        @media (max-width: 992px) {
+          font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+          font-size: 16px;
+        }
+      }
+
+      .date {
+        font-size: 14px;
+        color: #999;
+        margin-bottom: 10px;
+
+        @media (max-width: 600px) {
+          font-size: 12px;
+        }
+      }
+
+      .excerpt {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        flex-grow: 1;
+
+        @media (max-width: 992px) {
+          font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+      }
+
+      /* ✅ 閱讀更多按鈕 */
+      .read-more {
+        display: inline-block;
+        background: linear-gradient(45deg, #d88b32, #f3e0b1);
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: 0.3s;
+
+        &:hover {
+          opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+          font-size: 13px;
+          padding: 6px 12px;
+        }
+      }
+    }
+  }
+
+  /* 😢 沒有結果提示 */
+  .no-result {
+    grid-column: 1 / -1;
+    font-size: 16px;
+    color: #999;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
