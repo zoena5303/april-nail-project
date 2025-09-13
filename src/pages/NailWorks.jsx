@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "../scss/NailWorksstyle.scss";
 
-// 引入圖片
+// 引入圖片 (注意副檔名改為 .jpg)
 import NaillBanner from "../assets/images/NaillBanner2.jpg";
-import Naill1 from "../assets/images/Naill-1.png";
-import Naill2 from "../assets/images/Naill-2.png";
-import Naill3 from "../assets/images/Naill-3.png";
-import Naill4 from "../assets/images/Naill-4.png";
-import Naill5 from "../assets/images/Naill-5.png";
-import Naill6 from "../assets/images/Naill-6.png";
+import Naill1 from "../assets/images/Naill-1.jpg";
+import Naill2 from "../assets/images/Naill-2.jpg";
+import Naill3 from "../assets/images/Naill-3.jpg";
+import Naill4 from "../assets/images/Naill-4.jpg";
+import Naill5 from "../assets/images/Naill-5.jpg";
+import Naill6 from "../assets/images/Naill-6.jpg";
 
+// 作品資料
 const works = [
   { id: 1, category: "漸層", name: "黑貓眼漸層", img: Naill1 },
   { id: 2, category: "特殊造型", name: "卡通造型", img: Naill2 },
@@ -19,16 +20,18 @@ const works = [
   { id: 6, category: "特殊造型", name: "立體蝴蝶結", img: Naill6 },
 ];
 
+// 分類
 const categories = ["全部", "純色", "漸層", "法式", "特殊造型"];
 
 const NailWorks = () => {
   const [active, setActive] = useState("全部");
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
+  // 篩選作品
   const filtered =
     active === "全部" ? works : works.filter((w) => w.category === active);
 
-  // 淡入動畫
+  // 卡片淡入動畫
   useEffect(() => {
     const cards = document.querySelectorAll(".work-card");
     const observer = new IntersectionObserver(
@@ -71,7 +74,7 @@ const NailWorks = () => {
 
   return (
     <>
-      {/* Banner 區塊獨立出來，不受 nail-works 限制 */}
+      {/* Banner 區塊獨立 */}
       <div className="banner">
         <img src={NaillBanner} alt="美甲作品集 Banner" />
       </div>
@@ -103,7 +106,7 @@ const NailWorks = () => {
               onClick={() => setLightboxIndex(index)}
             >
               <div className="circle">
-                <img src={work.img} alt={work.name} />
+                <img src={work.img} alt={`美甲作品 - ${work.name}`} />
               </div>
               <div className="info">
                 <p className="work-name">{work.name}</p>
@@ -128,7 +131,7 @@ const NailWorks = () => {
               </button>
               <img
                 src={filtered[lightboxIndex].img}
-                alt={filtered[lightboxIndex].name}
+                alt={`放大圖 - ${filtered[lightboxIndex].name}`}
               />
               <button className="next-btn" onClick={handleNext}>
                 ›
