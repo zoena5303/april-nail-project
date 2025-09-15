@@ -1,0 +1,31 @@
+.custom-cursor {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  pointer-events: none; /* 不阻擋點擊 */
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  .cursor-img {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease; /* 淡入淡出 */
+  }
+
+  .show {
+    opacity: 1;
+  }
+
+  .hide {
+    opacity: 0;
+  }
+
+  &.clicked {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.6;
+  }
+}

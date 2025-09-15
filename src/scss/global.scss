@@ -1,0 +1,79 @@
+/* === 全域字體設定 === */
+
+/* 內文字體（中 + 英混合） */
+$font-body: 'Nunito Sans', 'Noto Sans TC', sans-serif;
+
+/* 副標 / 按鈕 / 導覽列 */
+$font-accent: 'Raleway', sans-serif;
+
+/* Logo / Hero 標題（裝飾字體） */
+$font-script: 'Great Vibes', 'Dancing Script', cursive;
+
+/* 備用優雅手寫體 */
+$font-alt: 'Allura', cursive;
+
+/* === 全域 Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fdf9f4; /* 你的奶茶色主背景 */
+}
+
+/* === 標題層級 === */
+h1, .logo-text {
+  font-family: $font-script;
+  font-weight: 400;
+  font-size: 3rem;
+  color: #9c5a05; // 品牌咖啡橘
+}
+
+h2 {
+  font-family: $font-script;
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #8b4513;
+}
+
+h3, h4, h5 {
+  font-family: $font-accent;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #5a3d1e;
+}
+
+/* === 內文 === */
+p {
+  font-family: $font-body;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+/* === 按鈕 === */
+button, .btn {
+  font-family: $font-accent;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #d88b32, #b46a0b);
+  color: #fff;
+
+  &:hover {
+    background: linear-gradient(45deg, #e09640, #c07512);
+  }
+}

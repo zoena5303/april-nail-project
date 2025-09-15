@@ -1,11 +1,12 @@
 // src/App.jsx
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-
 import "./App.css";
 
+// Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
+import Cursor from "./components/Cursor"; // 🔥 自訂游標（指甲油瓶）
 
 // Pages
 import Home from "./pages/Home";
@@ -33,8 +34,11 @@ function App() {
   return (
     // ✅ basename 要跟 vite.config.js 的 base 一樣
     <BrowserRouter basename="/april-nail-project">
-      <Navbar />
+      {/* 全域元件 */}
+      <Cursor />    {/* 自訂游標 */}
+      <Navbar />    {/* 導覽列 */}
 
+      {/* 路由設定 */}
       <Routes>
         {/* 首頁不包 page-container */}
         <Route path="/" element={<Home />} />
@@ -54,8 +58,9 @@ function App() {
         </Route>
       </Routes>
 
-      <BackToTop />
-      <Footer />
+      {/* 全域元件 */}
+      <BackToTop /> {/* 返回頂端按鈕 */}
+      <Footer />    {/* 頁尾 */}
     </BrowserRouter>
   );
 }

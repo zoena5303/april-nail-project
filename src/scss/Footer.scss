@@ -1,7 +1,7 @@
 .footer {
   width: 100%;                  /* ✅ 滿版 */
   background-color: #d6d0c7;    /* 灰米色 */
-  color: #4b0082;
+  color:#9C5A05;
 
   .footer-top {
     display: flex;
@@ -17,7 +17,7 @@
       font-size: 14px;
       margin-bottom: 10px;
       font-weight: bold;
-      color: #4b0082;
+      color: #9C5A05;
     }
 
     ul {
@@ -28,12 +28,12 @@
       li {
         margin: 5px 0;
         font-size: 13px;
-        color: #4b0082;
+        color:#9C5A05;
       }
 
       a {
         text-decoration: none;
-        color: #4b0082;
+        color:#9C5A05;
         transition: 0.3s;
 
         &:hover {
@@ -53,7 +53,7 @@
 
         &:hover {
           transform: scale(1.2);
-          color: #4b0082;
+          color: #9C5A05;
         }
       }
     }
