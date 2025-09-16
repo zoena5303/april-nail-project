@@ -16,7 +16,7 @@ const Cursor = () => {
   useEffect(() => {
     // 滑鼠移動位置
     const move = (e) => {
-      targetX.current = e.clientX + 20; // 讓瓶子跟在游標右下
+      targetX.current = e.clientX + 20;
       targetY.current = e.clientY + 20;
     };
 
@@ -27,7 +27,7 @@ const Cursor = () => {
     window.addEventListener("mousedown", handleDown);
     window.addEventListener("mouseup", handleUp);
 
-    // ✅ 全域監聽：button, a, img, 表單, store, nail, brow, FAQ
+    // ✅ 全域 hover 偵測
     const hoverSelector =
       "button, a, img, .btn, form, input, textarea, select, .store-env, .nail-work-card, .brow-work-card, [class*='faq']";
 
@@ -45,7 +45,7 @@ const Cursor = () => {
     document.body.addEventListener("mouseover", handleMouseOver);
     document.body.addEventListener("mouseout", handleMouseOut);
 
-    // 游標延遲跟隨動畫
+    // 延遲跟隨動畫
     const animate = () => {
       currentX.current += (targetX.current - currentX.current) * 0.1;
       currentY.current += (targetY.current - currentY.current) * 0.1;

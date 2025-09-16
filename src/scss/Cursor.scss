@@ -29,3 +29,10 @@
     opacity: 0.6;
   }
 }
+
+/* ✅ RWD：小於等於 992px 就隱藏游標 */
+@media (max-width: 992px) {
+  .custom-cursor {
+    display: none;
+  }
+}
