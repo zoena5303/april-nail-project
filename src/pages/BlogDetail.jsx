@@ -1,87 +1,76 @@
-// src/pages/BlogDetail.jsx
+// src/pages/Blog.jsx
 import React from "react";
-import { useParams, Link } from "react-router-dom";
-import "../scss/BlogDetailstyle.scss";
+import { Link } from "react-router-dom";
+import "../scss/Blogstyle.scss";
 
-// 匯入圖片
+// 匯入圖片（請確認路徑正確）
 import Blog1 from "../assets/images/Blog1.jpg";
 import Blog2 from "../assets/images/Blog2.jpg";
 import Blog3 from "../assets/images/Blog3.jpg";
-import Blog4 from "../assets/images/Blog4.jpg";
-import Blog5 from "../assets/images/Blog5.jpg";
-import Blog6 from "../assets/images/Blog6.jpg";
 
-// 假文章資料庫
 const posts = [
   {
     id: 1,
-    title: "護手霜的選擇",
-    date: "2025-09-01",
-    image: Blog1,
-    content:
-      "護手霜不只是香味好聞，更要注意成分！像是含有乳木果油、玻尿酸、維他命E 的護手霜，對保濕與修護特別有效…",
+    title: "霧眉的術後保養方法",
+    date: "2025-09-06",
+    excerpt: "術後的照護是關鍵，這樣做能讓霧眉顏色更均勻持久…",
+    img: Blog1,
+    categories: ["霧眉保養"], // ✅ 陣列
   },
   {
     id: 2,
-    title: "如何照護指甲",
-    date: "2025-09-02",
-    image: Blog2,
-    content:
-      "保持指甲健康要避免過度修剪，定期保養甲面，補充足夠的營養素，如鋅與蛋白質，可以讓指甲更堅韌…",
+    title: "霧眉術前介紹",
+    date: "2025-09-05",
+    excerpt: "霧眉前的準備與注意事項，讓效果更持久自然…",
+    img: Blog2,
+    categories: ["霧眉保養"], // ✅ 陣列
   },
   {
     id: 3,
-    title: "小工具的介紹",
-    date: "2025-09-03",
-    image: Blog3,
-    content:
-      "修甲推棒、拋光條、指緣油等工具在日常保養中非常實用，正確使用能避免甲面受損…",
-  },
-  {
-    id: 4,
     title: "色彩選擇",
     date: "2025-09-04",
-    image: Blog4,
-    content:
-      "選擇指甲顏色時，可以依照膚色冷暖調去搭配，膚色偏冷適合紫調、藍調；膚色偏暖則適合橘調、紅調…",
-  },
-  {
-    id: 5,
-    title: "霧眉術前介紹",
-    date: "2025-09-05",
-    image: Blog5,
-    content:
-      "霧眉前建議一週避免使用去角質與美白產品，並且與設計師充分溝通眉型，才能達到理想效果…",
-  },
-  {
-    id: 6,
-    title: "霧眉的術後保養方法",
-    date: "2025-09-06",
-    image: Blog6,
-    content:
-      "術後一週內避免大力搓洗，保持乾爽，避免曝曬與游泳，能幫助顏色更持久…",
+    excerpt: "什麼樣的指甲顏色能襯托膚色？配色小技巧大公開…",
+    img: Blog3,
+    categories: ["美甲設計"], // ✅ 陣列
   },
 ];
 
-const BlogDetail = () => {
-  const { id } = useParams();
-  const post = posts.find((p) => p.id === parseInt(id));
-
-  if (!post) {
-    return <p>找不到這篇文章。</p>;
-  }
-
+const Blog = () => {
   return (
-    <div className="blog-detail">
-      <img src={post.image} alt={post.title} className="detail-img" />
-      <h2 className="detail-title">{post.title}</h2>
-      <p className="detail-date">{post.date}</p>
-      <p className="detail-content">{post.content}</p>
-      <Link to="/blog" className="back-btn">
-        ← 返回部落格
-      </Link>
+    <div className="blog-page">
+      <h2 className="page-title">部落格文章</h2>
+      <div className="blog-grid">
+        {posts.map((post) => (
+          <div key={post.id} className="blog-card">
+            <img src={post.img} alt={post.title} className="blog-img" />
+            <div className="blog-content">
+              
+              {/* 標題 + 分類小標籤 */}
+              <h3 className="blog-title">
+                {post.title}
+                {console.log("這篇文章分類：", post.categories)}
+                {Array.isArray(post.categories) ? (
+                  post.categories.map((cat, index) => (
+                    <span key={index} className="tag">
+                      {cat}
+                    </span>
+                  ))
+                ) : (
+                  post.categories && <span className="tag">{post.categories}</span>
+                )}
+              </h3>
+
+              <p className="date">{post.date}</p>
+              <p className="excerpt">{post.excerpt}</p>
+              <Link to={`/blog/${post.id}`} className="read-more">
+                閱讀更多
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default BlogDetail;
+export default Blog;
