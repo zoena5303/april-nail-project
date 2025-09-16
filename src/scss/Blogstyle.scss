@@ -156,12 +156,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 
       img {
-        transform: scale(1.05); /* ✅ hover 放大效果 */
-      }
-
-      .blog-tag {
-        opacity: 1; /* ✅ hover 時淡入 */
-        transform: translateY(0);
+        transform: scale(1.05);
       }
     }
 
@@ -184,34 +179,6 @@
           height: 160px;
         }
       }
-
-      /* 🏷️ 類別標籤 */
-      .blog-tag {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        font-size: 12px;
-        font-weight: 600;
-        padding: 4px 12px;
-        border-radius: 20px;
-        color: #fff;
-        opacity: 0; /* 預設隱藏 */
-        transform: translateY(-5px);
-        transition: all 0.3s ease;
-      }
-
-      /* 不同分類顏色 */
-      .blog-tag.指尖的保養 {
-        background: #6bb07d;
-      }
-
-      .blog-tag.美甲設計 {
-        background: #d88b32;
-      }
-
-      .blog-tag.霧眉保養 {
-        background: #c67fa8;
-      }
     }
 
     .blog-content {
@@ -222,17 +189,47 @@
       flex-direction: column;
       justify-content: space-between;
 
-      h3 {
-        font-size: 20px;
-        color: #333;
-        margin-bottom: 8px;
+      /* 標題 + 標籤 */
+      .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
 
-        @media (max-width: 992px) {
-          font-size: 18px;
+        h3 {
+          font-size: 20px;
+          color: #333;
+          margin: 0;
+          flex: 1;
+
+          @media (max-width: 992px) {
+            font-size: 18px;
+          }
+
+          @media (max-width: 600px) {
+            font-size: 16px;
+          }
         }
 
-        @media (max-width: 600px) {
-          font-size: 16px;
+        .blog-tag {
+          font-size: 12px;
+          font-weight: 600;
+          padding: 4px 10px;
+          border-radius: 12px;
+          color: #fff;
+          margin-left: 10px;
+          white-space: nowrap;
+
+          /* 不同分類顏色 */
+          &.指尖的保養 {
+            background: #6bb07d;
+          }
+          &.美甲設計 {
+            background: #d88b32;
+          }
+          &.霧眉保養 {
+            background: #c67fa8;
+          }
         }
       }
 
@@ -263,15 +260,12 @@
         }
       }
 
-      /* ✅ 閱讀更多按鈕 */
       .read-more {
         display: inline-block;
         background: linear-gradient(45deg, #d88b32, #f3e0b1);
         color: #fff;
         padding: 8px 16px;
-        border: none;
         border-radius: 6px;
-        cursor: pointer;
         font-size: 14px;
         font-weight: 500;
         text-decoration: none;

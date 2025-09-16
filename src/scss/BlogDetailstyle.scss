@@ -1,132 +1,126 @@
-.blog-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
+.blog-detail {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  line-height: 1.8;
+  color: #333;
 
-  .page-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    font-weight: bold;
-    color: #333;
-  }
+  /* ===== 標題區 ===== */
+  .blog-header {
+    margin-bottom: 20px;
 
-  .blog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
-  }
-
-  .blog-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #9c5a05; // 品牌咖啡橘
     }
 
-    .blog-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+    .meta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 0.9rem;
+      color: #666;
 
-    .blog-content {
-      padding: 16px 20px;
-
-      /* 標題 + 小標籤 */
-      .blog-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #222;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 8px;
-
-        /* 小標籤共用樣式 */
-        .tag {
-          display: inline-block;
-          padding: 4px 10px;
-          border-radius: 12px;
-          font-size: 0.75rem;
-          font-weight: 500;
-          color: #fff;
-
-          /* Debug 強制紅色，保證看得到 */
-          background: red !important;
-
-          /* 分類顏色設定 */
-          &.eyebrow {
-            background: #d88b32; // 橘色 - 霧眉保養
-          }
-          &.nail {
-            background: #3b82f6; // 藍色 - 美甲設計
-          }
-          &.handcare {
-            background: #22c55e; // 綠色 - 指尖保養
-          }
-        }
+      .category {
+        background: #f3e0b1;
+        color: #333;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
       }
 
       .date {
-        font-size: 0.9rem;
-        color: #777;
-        margin-bottom: 10px;
-      }
-
-      .excerpt {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 16px;
-      }
-
-      .read-more {
-        display: inline-block;
-        background: linear-gradient(135deg, #f3ddc7, #f0d4b7);
-        padding: 10px 20px;
-        border-radius: 8px;
-        color: #333;
-        font-size: 0.95rem;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background 0.3s ease;
-
-        &:hover {
-          background: linear-gradient(135deg, #f0d4b7, #f3e0b1);
-        }
+        font-size: 0.85rem;
+        color: #888;
       }
     }
   }
 
-  /* RWD */
-  @media (max-width: 768px) {
-    padding: 40px 16px;
+  /* ===== 封面圖 ===== */
+  .blog-image {
+    margin: 20px 0;
 
-    .page-title {
-      font-size: 1.6rem;
+    img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+    }
+  }
+
+  /* ===== 文章內文 ===== */
+  .blog-content {
+    font-size: 1rem;
+    margin: 30px 0 50px;
+    color: #444;
+
+    p {
+      margin-bottom: 18px;
+      text-align: justify;
+      line-height: 1.8;
     }
 
-    .blog-card {
-      .blog-img {
-        height: 180px;
-      }
+    /* 如果未來要加副標題 */
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 24px 0 12px;
+      color: #9c5a05;
+    }
 
-      .blog-content {
-        padding: 14px 16px;
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 18px 0 8px;
+      color: #b46a0b;
+    }
 
-        .blog-title {
-          font-size: 1rem;
-        }
-        .excerpt {
-          font-size: 0.9rem;
-        }
+    ul {
+      margin: 12px 0 24px 20px;
+      list-style: disc;
+
+      li {
+        margin-bottom: 6px;
       }
+    }
+  }
+
+  /* ===== 返回按鈕 ===== */
+  .back-button {
+    text-align: center;
+
+    a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #9c5a05;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #b46a0b;
+      }
+    }
+  }
+
+  /* ===== RWD ===== */
+  @media (max-width: 768px) {
+    margin: 30px auto;
+    padding: 16px;
+
+    .blog-header {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    .blog-content {
+      font-size: 0.95rem;
     }
   }
 }

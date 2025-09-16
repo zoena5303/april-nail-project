@@ -84,11 +84,13 @@ const Blog = () => {
             <div className="blog-card" key={post.id}>
               <div className="image-wrapper">
                 <img src={post.image} alt={post.title} />
-                {/* 🏷️ 類別標籤 */}
-                <span className={`blog-tag ${post.category}`}>{post.category}</span>
               </div>
               <div className="blog-content">
-                <h3>{post.title}</h3>
+                {/* 標題 + 標籤 */}
+                <div className="title-row">
+                  <h3>{post.title}</h3>
+                  <span className={`blog-tag ${post.category}`}>{post.category}</span>
+                </div>
                 <p className="date">{post.date}</p>
                 <p className="excerpt">{post.excerpt}</p>
                 <Link to={`/blog/${post.id}`} className="read-more">
