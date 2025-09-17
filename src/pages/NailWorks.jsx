@@ -74,77 +74,79 @@ const NailWorks = () => {
 
   return (
     <>
-      {/* Banner 區塊 */}
+      {/* ✅ Banner 區塊獨立，避免被 page-container 限制 */}
       <div className="banner">
         <img src={NaillBanner} alt="美甲作品集 Banner" />
       </div>
 
-      <div className="nail-works">
-        {/* 頁面標題 */}
-        <h2 className="page-title">美甲作品集</h2>
+      {/* ✅ 主體內容再放在 page-container 內 */}
+      <div className="page-container">
+        <div className="nail-works">
+          {/* 頁面標題 */}
+          <h2 className="page-title">美甲作品集</h2>
 
-        {/* 分類 Tabs */}
-        <div className="tabs">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={active === cat ? "active" : ""}
-              onClick={() => setActive(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* 卡片區 */}
-        <div className="works-grid">
-          {filtered.map((work, index) => (
-            <div
-              key={work.id}
-              className="work-card fade-in"
-              onClick={() => setLightboxIndex(index)}
-            >
-              <div className="circle">
-                <img src={work.img} alt={`美甲作品 - ${work.name}`} />
-              </div>
-              <div className="info">
-                {/* ✅ 修改這裡 */}
-                <div className="name-row">
-                  <p className="work-name">{work.name}</p>
-                  <span className="tag">{work.category}</span>
-                </div>
-                <p className="work-style">{work.style}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* 燈箱 Lightbox */}
-        {lightboxIndex !== null && (
-          <div className="lightbox" onClick={() => setLightboxIndex(null)}>
-            <div
-              className="lightbox-content"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button className="close-btn" onClick={() => setLightboxIndex(null)}>
-                ✕
+          {/* 分類 Tabs */}
+          <div className="tabs">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                className={active === cat ? "active" : ""}
+                onClick={() => setActive(cat)}
+              >
+                {cat}
               </button>
-              <button className="prev-btn" onClick={handlePrev}>
-                ‹
-              </button>
-              <img
-                src={filtered[lightboxIndex].img}
-                alt={`放大圖 - ${filtered[lightboxIndex].name}`}
-              />
-              <button className="next-btn" onClick={handleNext}>
-                ›
-              </button>
-              <p className="lightbox-caption">
-                {filtered[lightboxIndex].name}｜{filtered[lightboxIndex].style}
-              </p>
-            </div>
+            ))}
           </div>
-        )}
+
+          {/* 卡片區 */}
+          <div className="works-grid">
+            {filtered.map((work, index) => (
+              <div
+                key={work.id}
+                className="work-card fade-in"
+                onClick={() => setLightboxIndex(index)}
+              >
+                <div className="circle">
+                  <img src={work.img} alt={`美甲作品 - ${work.name}`} />
+                </div>
+                <div className="info">
+                  <div className="name-row">
+                    <p className="work-name">{work.name}</p>
+                    <span className="tag">{work.category}</span>
+                  </div>
+                  <p className="work-style">{work.style}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 燈箱 Lightbox */}
+          {lightboxIndex !== null && (
+            <div className="lightbox" onClick={() => setLightboxIndex(null)}>
+              <div
+                className="lightbox-content"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="close-btn" onClick={() => setLightboxIndex(null)}>
+                  ✕
+                </button>
+                <button className="prev-btn" onClick={handlePrev}>
+                  ‹
+                </button>
+                <img
+                  src={filtered[lightboxIndex].img}
+                  alt={`放大圖 - ${filtered[lightboxIndex].name}`}
+                />
+                <button className="next-btn" onClick={handleNext}>
+                  ›
+                </button>
+                <p className="lightbox-caption">
+                  {filtered[lightboxIndex].name}｜{filtered[lightboxIndex].style}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
