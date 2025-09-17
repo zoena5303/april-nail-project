@@ -1,13 +1,12 @@
 /* ===== Banner 區 (Hero Style) ===== */
 .banner {
+  width: 100vw;
+  height: 60vh; /* 桌機版高度 */
+  margin: 0;    /* ✅ 移除縫隙 */
+  padding: 0;
   position: relative;
   top: 0;
-  margin: 0;
-  padding: 0;
-  width: 100vw; /* 滿版 */
-  height: 60vh; /* Hero 高度 */
-  margin-left: calc(-50vw + 50%);
-  margin-top: -40px; /* ✅ 桌機版往上推，避免留白 */
+  left: 0;
   overflow: hidden;
 
   img {
@@ -21,24 +20,11 @@
   /* 平板 */
   @media (max-width: 992px) {
     height: 40vh;
-    margin-top: -30px; /* ✅ 平板微調 */
   }
 
   /* 手機 */
   @media (max-width: 600px) {
     height: 30vh;
-    margin: 0 !important;   /* ✅ 強制清除縫隙 */
-    padding: 0 !important;
-    top: 0 !important;
-    position: relative;
-  }
-}
-
-/* ===== 手機父層修正，避免縫隙 ===== */
-@media (max-width: 600px) {
-  .nail-works {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
   }
 }
 
