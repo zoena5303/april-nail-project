@@ -7,7 +7,7 @@
   width: 100vw; /* 滿版 */
   height: 60vh; /* Hero 高度 */
   margin-left: calc(-50vw + 50%);
-  margin-top: -40px; /* ✅ 往上推，避免留白 */
+  margin-top: -40px; /* ✅ 桌機版往上推，避免留白 */
   overflow: hidden;
 
   img {
@@ -21,13 +21,14 @@
   /* 平板 */
   @media (max-width: 992px) {
     height: 40vh;
-    margin-top: -30px; /* ✅ RWD 微調 */
+    margin-top: -30px; /* ✅ 平板微調 */
   }
 
   /* 手機 */
   @media (max-width: 600px) {
     height: 30vh;
-    margin-top: -20px; /* ✅ RWD 微調 */
+    margin-top: 0 !important; /* ✅ 強制置頂 */
+    top: 0 !important;        /* ✅ 確保貼齊頂端 */
   }
 }
 
