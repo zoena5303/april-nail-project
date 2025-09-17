@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "../scss/NailWorksstyle.scss";
 
-// 引入圖片 (注意副檔名改為 .jpg)
+// 引入圖片
 import NaillBanner from "../assets/images/NaillBanner2.jpg";
 import Naill1 from "../assets/images/Naill-1.jpg";
 import Naill2 from "../assets/images/Naill-2.jpg";
 import Naill3 from "../assets/images/Naill-3.jpg";
 import Naill4 from "../assets/images/Naill-4.jpg";
-import Naill5 from "../assets/images/Naill-5.jpg";
 import Naill6 from "../assets/images/Naill-6.jpg";
+import Naill7 from "../assets/images/Naill-7.jpg";
 
-// 作品資料
+// 作品資料（移除 Naill5）
 const works = [
-  { id: 1, category: "漸層", name: "黑貓眼漸層", img: Naill1 },
-  { id: 2, category: "特殊造型", name: "卡通造型", img: Naill2 },
-  { id: 3, category: "法式", name: "墨染法式", img: Naill3 },
-  { id: 4, category: "特殊造型", name: "蝴蝶結", img: Naill4 },
-  { id: 5, category: "純色", name: "馬卡龍色", img: Naill5 },
-  { id: 6, category: "特殊造型", name: "立體蝴蝶結", img: Naill6 },
+  { id: 1, category: "貓眼", name: "極夜流光 ", style: "星空元素風：亮粉黑帶點星空般的閃爍。", img: Naill1 },
+  { id: 2, category: "特殊造型", name: "幻境萌語", style: "清透粉嫩風：以透明感+白色+粉嫩小點綴，顯得清新乾淨。", img: Naill2 },
+  { id: 3, category: "暈染", name: "晨曦薄霧", style: "水墨暈染風：帶有水彩/大理石暈染的柔和層次。", img: Naill3 },
+  { id: 4, category: "法式", name: "銀色戀語", style: "夢幻童話感：像是童話裡的婚禮或舞會造型。", img: Naill4 },
+  { id: 5, category: "特殊造型", name: "芭蕾夢境", style: "法式優雅：白色法式線條搭配蕾絲格紋。", img: Naill6 },
+  { id: 6, category: "貓眼", name: "月影流沙", style: "貓眼極光系：利用貓眼光澤製造立體流動感。", img: Naill7 },
 ];
 
 // 分類
-const categories = ["全部", "純色", "漸層", "法式", "特殊造型"];
+const categories = ["全部", "貓眼", "暈染", "法式", "特殊造型"];
 
 const NailWorks = () => {
   const [active, setActive] = useState("全部");
@@ -74,12 +74,11 @@ const NailWorks = () => {
 
   return (
     <>
-      {/* Banner 區塊獨立 */}
+      {/* Banner 區塊 */}
       <div className="banner">
         <img src={NaillBanner} alt="美甲作品集 Banner" />
       </div>
 
-      {/* 主要內容 */}
       <div className="nail-works">
         {/* 頁面標題 */}
         <h2 className="page-title">美甲作品集</h2>
@@ -109,8 +108,12 @@ const NailWorks = () => {
                 <img src={work.img} alt={`美甲作品 - ${work.name}`} />
               </div>
               <div className="info">
-                <p className="work-name">{work.name}</p>
-                <span className="tag">{work.category}</span>
+                {/* ✅ 修改這裡 */}
+                <div className="name-row">
+                  <p className="work-name">{work.name}</p>
+                  <span className="tag">{work.category}</span>
+                </div>
+                <p className="work-style">{work.style}</p>
               </div>
             </div>
           ))}
@@ -136,7 +139,9 @@ const NailWorks = () => {
               <button className="next-btn" onClick={handleNext}>
                 ›
               </button>
-              <p className="lightbox-caption">{filtered[lightboxIndex].name}</p>
+              <p className="lightbox-caption">
+                {filtered[lightboxIndex].name}｜{filtered[lightboxIndex].style}
+              </p>
             </div>
           </div>
         )}
