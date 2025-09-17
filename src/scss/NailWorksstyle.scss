@@ -27,8 +27,18 @@
   /* 手機 */
   @media (max-width: 600px) {
     height: 30vh;
-    margin-top: 0 !important; /* ✅ 強制置頂 */
-    top: 0 !important;        /* ✅ 確保貼齊頂端 */
+    margin: 0 !important;   /* ✅ 強制清除縫隙 */
+    padding: 0 !important;
+    top: 0 !important;
+    position: relative;
+  }
+}
+
+/* ===== 手機父層修正，避免縫隙 ===== */
+@media (max-width: 600px) {
+  .nail-works {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 }
 
