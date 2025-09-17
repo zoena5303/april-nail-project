@@ -28,7 +28,9 @@
   /* 手機 */
   @media (max-width: 600px) {
     height: 30vh;
-    margin-top: 0;     /* ✅ 手機完全置頂 */
+    margin: 0 !important;      /* ✅ 清掉縫隙 */
+    padding: 0 !important;
+    top: 0;
   }
 }
 
@@ -37,6 +39,12 @@
   background: #fdf9f4;
   margin-top: 0;
   padding-top: 0;
+
+  /* 手機補強：避免內容被推開 */
+  @media (max-width: 600px) {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
 
   /* ===== 頁面標題 ===== */
   .page-title {
@@ -176,7 +184,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 8px; /* ✅ 標題與標籤間距 */
+        margin-bottom: 8px;
 
         .work-name {
           font-size: 16px;
@@ -237,7 +245,7 @@
 
       .info {
         .name-row {
-          flex-direction: column; /* ✅ 小螢幕上下排列 */
+          flex-direction: column;
           gap: 4px;
           text-align: center;
 
