@@ -27,11 +27,10 @@
 
   /* 手機 */
   @media (max-width: 600px) {
-    width: 100%;
-    height: auto;               /* ✅ 自適應高度 */
-    aspect-ratio: 16 / 9;       /* ✅ 保持比例 (避免過高或扁) */
-    margin: 0 !important;       /* ✅ 移除縫隙 */
-    margin-left: 0 !important;  /* ✅ 修正置中偏移 */
+    width: 100%;              /* ✅ 避免橫向捲動 */
+    height: 100vh;            /* ✅ 手機滿版顯示 */
+    margin: 0 !important;
+    margin-left: 0 !important;
     padding: 0 !important;
     top: 0;
     left: 0;
@@ -39,13 +38,8 @@
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;        /* ✅ 填滿不變形 */
+      object-fit: cover;      /* ✅ 保持填滿不變形 */
     }
-  }
-
-  /* 超小螢幕 (窄版手機) */
-  @media (max-width: 400px) {
-    aspect-ratio: 4 / 3;        /* ✅ 更方正，避免太扁 */
   }
 }
 
@@ -156,9 +150,9 @@
     cursor: pointer;
 
     &:hover {
-      transform: translateY(-10px) scale(1.02); /* ✅ 浮起+微放大 */
+      transform: translateY(-10px) scale(1.02);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
-      border: 1px solid rgba(243, 221, 199, 0.8); /* ✅ 淡奶茶光暈邊框 */
+      border: 1px solid rgba(243, 221, 199, 0.8);
     }
 
     &.show {
@@ -213,7 +207,7 @@
           padding: 3px 12px;
           font-size: 12px;
           color: #5a3a22;
-          background: #f3ddc7; /* ✅ 奶茶色標籤 */
+          background: #f3ddc7;
           border-radius: 12px;
           white-space: nowrap;
         }
