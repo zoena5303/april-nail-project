@@ -1,61 +1,39 @@
-/* ===== Banner 區 (Hero Style) ===== */
-.banner {
+/* ===== 美甲作品 Banner (比照首頁，含推距修正) ===== */
+.nailworks-banner {
   position: relative;
-  width: 100vw;                   /* ✅ 滿版寬度 */
-  height: 60vh;                   /* ✅ 桌機版高度 */
-  margin-left: calc(-50vw + 50%); /* ✅ 破版置中 */
+  width: 100vw;
+  height: 70vh; /* ✅ 桌機高度 */
+  margin-left: calc(-50vw + 50%);
   margin-right: calc(-50vw + 50%);
-  margin-top: -40px;
-  padding: 0 !important;
+  margin-top: -40px; /* ✅ 桌機：往上推齊 Navbar */
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;   /* ✅ 填滿不留縫隙 */
+    object-fit: cover; /* ✅ 強制填滿 */
     display: block;
     filter: brightness(85%);
   }
 
   /* 平板 */
   @media (max-width: 992px) {
-    width: 100vw;   /* ✅ 強制滿版 */
-    margin: 0;
-    height: 50vh;   /* ⬆️ 拉高一點，避免太扁 */
-    margin-top: -20px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.05); /* ✅ 放大避免邊緣黑邊 */
-    }
+    height: 50vh;
+    margin-top: -40px; /* ✅ 平板推少一點 */
   }
 
   /* 手機 */
   @media (max-width: 600px) {
-    width: 100vw;
-    margin: 0;
-    height: 45vh;   /* ⬆️ 比原本更高，避免扁掉 */
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.1); /* ✅ 再放大確保填滿 */
-    }
+    height: 40vh;
+    margin-top: -40px; /* ✅ 手機再微調 */
   }
 
   /* 超小螢幕 */
   @media (max-width: 400px) {
-    height: 40vh;
-
-    img {
-      transform: scale(1.15);
-    }
+    height: 35vh;
+    margin-top: -15px; /* ✅ 縫隙更小，調到剛好貼齊 */
   }
 
-  /* Banner 文字覆蓋 */
   .banner-title {
     position: absolute;
     top: 50%;
@@ -70,41 +48,12 @@
   }
 }
 
-/* ===== Nail Works 區 ===== */
+/* ===== NailWorks 內容 ===== */
 .nail-works {
   text-align: center;
   background: #fdf9f4;
   margin-top: 0;
   padding-top: 0;
-
-  /* 🔑 保險：針對小螢幕 Banner 再次清除 margin */
-  @media (max-width: 992px) {
-    .banner {
-      width: 100vw;
-      margin: 0;
-    }
-  }
-
-  /* ===== 頁面標題 ===== */
-  .page-title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #9c5a05;
-    margin: 40px 0 20px;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-
-    &::after {
-      content: "";
-      display: block;
-      width: 80px;
-      height: 3px;
-      margin: 8px auto 0;
-      border-radius: 2px;
-      background: linear-gradient(to right, #f9e7d3, #f3ddc7, #d8a86c);
-    }
-  }
 
   /* ===== Tabs ===== */
   .tabs {
@@ -129,7 +78,6 @@
         background: #f3ddc7;
         color: #9c5a05;
         font-weight: bold;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
       }
 
       &:hover {
@@ -150,8 +98,6 @@
       &::-webkit-scrollbar {
         display: none;
       }
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
   }
 
@@ -168,27 +114,22 @@
     background: #fff;
     padding: 20px;
     border-radius: 16px;
-    border: 1px solid transparent;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.35s ease-in-out,
-      box-shadow 0.35s ease-in-out,
-      border 0.35s ease-in-out;
     opacity: 0;
     transform: translateY(30px);
     width: 100%;
     max-width: 280px;
     cursor: pointer;
+    transition: all 0.35s ease-in-out;
 
     &:hover {
       transform: translateY(-10px) scale(1.02);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
-      border: 1px solid rgba(243, 221, 199, 0.8);
     }
 
     &.show {
       opacity: 1;
       transform: translateY(0);
-      transition: all 0.6s ease-out;
     }
 
     .circle {
@@ -196,11 +137,7 @@
       height: 200px;
       border-radius: 50%;
       overflow: hidden;
-      background: #ddd;
       margin: 0 auto 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
 
       img {
         width: 100%;
@@ -228,17 +165,14 @@
           font-size: 16px;
           font-weight: 700;
           color: #3c2f2f;
-          line-height: 1.4;
         }
 
         .tag {
-          display: inline-block;
           padding: 3px 12px;
           font-size: 12px;
           color: #5a3a22;
           background: #f3ddc7;
           border-radius: 12px;
-          white-space: nowrap;
         }
       }
 
@@ -247,63 +181,41 @@
         color: #777;
         line-height: 1.6;
         min-height: 42px;
-        display: flex;
-        align-items: center;
       }
     }
   }
 
-  /* 平板 */
   @media (max-width: 992px) {
     .works-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 30px;
     }
 
-    .work-card {
-      .circle {
-        width: 160px;
-        height: 160px;
-      }
+    .work-card .circle {
+      width: 160px;
+      height: 160px;
     }
   }
 
-  /* 手機 */
   @media (max-width: 600px) {
     .works-grid {
       grid-template-columns: 1fr;
       gap: 25px;
     }
 
-    .work-card {
-      .circle {
-        width: 140px;
-        height: 140px;
-      }
+    .work-card .circle {
+      width: 140px;
+      height: 140px;
+    }
 
-      .info {
-        .name-row {
-          flex-direction: column;
-          gap: 4px;
-          text-align: center;
+    .work-card .info .name-row {
+      flex-direction: column;
+      text-align: center;
+      gap: 4px;
+    }
 
-          .work-name {
-            font-size: 15px;
-          }
-
-          .tag {
-            font-size: 11px;
-            padding: 2px 8px;
-          }
-        }
-
-        .work-style {
-          font-size: 13px;
-          min-height: 38px;
-          text-align: center;
-          justify-content: center;
-        }
-      }
+    .work-card .info .work-style {
+      text-align: center;
     }
   }
 
@@ -316,19 +228,8 @@
     justify-content: center;
     align-items: center;
     z-index: 3000;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-
-    &.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    &.hide {
-      opacity: 0;
-      transform: scale(0.95);
-    }
+    opacity: 1;
+    transition: opacity 0.3s ease;
 
     .lightbox-content {
       position: relative;
@@ -340,7 +241,7 @@
 
       img {
         max-width: 100%;
-        max-height: 80vh;
+        max-height: 80vh; /* ✅ 限制圖片高度 */
         object-fit: contain;
         border-radius: 10px;
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
