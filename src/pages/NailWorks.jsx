@@ -26,6 +26,7 @@ const categories = ["全部", "貓眼", "暈染", "法式", "特殊造型"];
 const NailWorks = () => {
   const [active, setActive] = useState("全部");
   const [lightboxIndex, setLightboxIndex] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   // 篩選作品
   const filtered =
@@ -63,7 +64,7 @@ const NailWorks = () => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (lightboxIndex === null) return;
-      if (e.key === "Escape") setLightboxIndex(null);
+      if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowLeft") handlePrev();
       if (e.key === "ArrowRight") handleNext();
     };
@@ -72,14 +73,25 @@ const NailWorks = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [lightboxIndex]);
 
+  // ✅ 打開 / 關閉帶動畫
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setIsVisible(true);
+  };
+
+  const closeLightbox = () => {
+    setIsVisible(false);
+    setTimeout(() => setLightboxIndex(null), 300); // 等動畫結束再移除
+  };
+
   return (
     <>
-      {/* ✅ Banner 區塊獨立，避免被 page-container 限制 */}
+      {/* ✅ Banner 區塊 */}
       <div className="banner">
         <img src={NaillBanner} alt="美甲作品集 Banner" />
       </div>
 
-      {/* ✅ 主體內容再放在 page-container 內 */}
+      {/* ✅ 主體內容 */}
       <div className="page-container">
         <div className="nail-works">
           {/* 頁面標題 */}
@@ -104,7 +116,7 @@ const NailWorks = () => {
               <div
                 key={work.id}
                 className="work-card fade-in"
-                onClick={() => setLightboxIndex(index)}
+                onClick={() => openLightbox(index)}
               >
                 <div className="circle">
                   <img src={work.img} alt={`美甲作品 - ${work.name}`} />
@@ -122,12 +134,15 @@ const NailWorks = () => {
 
           {/* 燈箱 Lightbox */}
           {lightboxIndex !== null && (
-            <div className="lightbox" onClick={() => setLightboxIndex(null)}>
+            <div
+              className={`lightbox ${isVisible ? "show" : "hide"}`}
+              onClick={closeLightbox}
+            >
               <div
                 className="lightbox-content"
                 onClick={(e) => e.stopPropagation()}
               >
-                <button className="close-btn" onClick={() => setLightboxIndex(null)}>
+                <button className="close-btn" onClick={closeLightbox}>
                   ✕
                 </button>
                 <button className="prev-btn" onClick={handlePrev}>

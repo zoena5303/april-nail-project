@@ -1,9 +1,9 @@
 /* ===== Banner 區 (Hero Style) ===== */
 .banner {
   position: relative;
-  width: 100vw;
-  height: 60vh; /* 桌機版高度 */
-  margin-left: calc(-50vw + 50%); /* ✅ 桌機置中破版 */
+  width: 100vw;                   /* ✅ 滿版寬度 */
+  height: 60vh;                   /* ✅ 桌機版高度 */
+  margin-left: calc(-50vw + 50%); /* ✅ 破版置中 */
   margin-right: calc(-50vw + 50%);
   margin-top: -40px;
   padding: 0 !important;
@@ -12,41 +12,65 @@
   img {
     width: 100%;
     height: 100%;
+    object-fit: cover;   /* ✅ 填滿不留縫隙 */
     display: block;
-    object-fit: cover;
     filter: brightness(85%);
-    transition: transform 0.3s ease;
   }
 
   /* 平板 */
   @media (max-width: 992px) {
-    width: 100%;     /* ✅ 改成 100%，不再用 calc */
-    margin: 0;       /* ✅ 清掉破版 margin */
-    height: 40vh;
-    margin-top: -30px;
+    width: 100vw;   /* ✅ 強制滿版 */
+    margin: 0;
+    height: 50vh;   /* ⬆️ 拉高一點，避免太扁 */
+    margin-top: -20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05); /* ✅ 放大避免邊緣黑邊 */
+    }
   }
 
   /* 手機 */
   @media (max-width: 600px) {
-    width: 100%;
+    width: 100vw;
     margin: 0;
-    height: 35vh;
+    height: 45vh;   /* ⬆️ 比原本更高，避免扁掉 */
 
     img {
-      transform: scale(1.1); /* ✅ 放大避免留白 */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.1); /* ✅ 再放大確保填滿 */
     }
   }
 
   /* 超小螢幕 */
   @media (max-width: 400px) {
-    height: 30vh;
+    height: 40vh;
 
     img {
-      transform: scale(1.2); /* ✅ 更窄再放大 */
+      transform: scale(1.15);
     }
+  }
+
+  /* Banner 文字覆蓋 */
+  .banner-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 25px;
+    border-radius: 10px;
   }
 }
 
+/* ===== Nail Works 區 ===== */
 .nail-works {
   text-align: center;
   background: #fdf9f4;
@@ -56,7 +80,7 @@
   /* 🔑 保險：針對小螢幕 Banner 再次清除 margin */
   @media (max-width: 992px) {
     .banner {
-      width: 100%;
+      width: 100vw;
       margin: 0;
     }
   }
@@ -278,6 +302,108 @@
           min-height: 38px;
           text-align: center;
           justify-content: center;
+        }
+      }
+    }
+  }
+
+  /* ===== Lightbox ===== */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    &.hide {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .close-btn,
+      .prev-btn,
+      .next-btn {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        border: none;
+        font-size: 2rem;
+        padding: 8px 14px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &:hover {
+          background: #9c5a05;
+        }
+      }
+
+      .close-btn {
+        top: -50px;
+        right: -50px;
+        font-size: 2.2rem;
+      }
+
+      .prev-btn {
+        top: 50%;
+        left: -60px;
+        transform: translateY(-50%);
+      }
+
+      .next-btn {
+        top: 50%;
+        right: -60px;
+        transform: translateY(-50%);
+      }
+
+      .lightbox-caption {
+        margin-top: 15px;
+        font-size: 15px;
+        color: #fff;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .lightbox-content {
+        max-width: 95%;
+        max-height: 75%;
+
+        .close-btn {
+          top: -40px;
+          right: 0;
+        }
+        .prev-btn {
+          left: -40px;
+        }
+        .next-btn {
+          right: -40px;
         }
       }
     }
