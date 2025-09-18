@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
 import Cursor from "./components/Cursor"; // 🔥 自訂游標（指甲油瓶）
+import ScrollToTop from "./components/ScrollToTop"; // ✅ 新增：換頁立即回頂端
 
 // Pages
 import Home from "./pages/Home";
@@ -34,6 +35,9 @@ function App() {
   return (
     // ✅ basename 要跟 vite.config.js 的 base 一樣
     <BrowserRouter basename="/april-nail-project">
+      {/* ScrollToTop 必須放在 Router 內 */}
+      <ScrollToTop />
+
       {/* 全域元件 */}
       <Cursor />    {/* 自訂游標 */}
       <Navbar />    {/* 導覽列 */}
