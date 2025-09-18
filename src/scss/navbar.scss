@@ -1,7 +1,7 @@
 .navbar {
   width: 100%;
   background-color: #d88b32; /* 橘色背景 */
-  padding: 15px 40px;
+  padding: 8px 24px; /* ✅ 上下縮短，整體變矮 */
 
   display: flex;
   justify-content: space-between;
@@ -13,131 +13,128 @@
     align-items: center;
 
     .logo-img {
-      width: 150px;
+      width: 110px; /* ✅ 縮小 Logo */
       height: auto;
       display: block;
       object-fit: contain;
     }
   }
 
-  /* 右側選單（桌機版預設顯示） */
+  /* 右側選單（桌機版） */
   .nav-links {
     list-style: none;
     display: flex;
-    gap: 40px;
-    margin-top: 40px;
+    gap: 28px; /* ✅ 間距縮短 */
+    margin: 0;
 
     li a {
       display: flex;
-      flex-direction: column;   /* icon 在上、文字在下 */
+      flex-direction: column; /* icon 在上、文字在下 */
       align-items: center;
       text-decoration: none;
-      color: #000;
+      color: #fff; /* ✅ 預設白字 */
       font-weight: 500;
       transition: 0.3s ease;
 
       img {
-        height: 40px;
-        max-width: 40px;
+        height: 28px; /* ✅ 縮小 icon */
+        max-width: 28px;
         object-fit: contain;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
         display: block;
+        filter: brightness(0) invert(1); /* ✅ icon 強制白色 */
         transition: transform 0.3s ease, filter 0.3s ease;
       }
 
       span {
-        font-size: 14px;
+        font-size: 13px; /* ✅ 字體縮小 */
         line-height: 1.2;
-        min-height: 20px;
         text-align: center;
+        transition: color 0.3s ease;
       }
 
       &:hover img {
         transform: scale(1.1);
-        filter: brightness(1.2);
       }
 
       &:hover span {
-        color: #222;
+        color: #ffd27f; /* ✅ hover 金色 */
       }
 
-      /* 當前頁面 NavLink active 狀態 */
       &.active span {
-        color: #9c5a05;
+        color: #ffd27f; /* ✅ active 長駐金色 */
         font-weight: 700;
-        border-bottom: 2px solid #9c5a05;
-        padding-bottom: 2px;
       }
     }
 
-    /* 特殊補救：指尖保健室 */
+    /* 指尖保健室微調 */
     li:last-child a img {
-      height: 44px;
+      height: 30px;
     }
 
     li:last-child a span {
-      font-size: 13px;
+      font-size: 12px;
     }
   }
 
-  /* 漢堡 icon（預設隱藏，手機版顯示） */
+  /* 漢堡 icon（桌機隱藏，手機顯示） */
   .menu-icon {
     display: none;
-    font-size: 28px;
-    color: #000;
+    font-size: 26px;
+    color: #fff;
     cursor: pointer;
-    z-index: 1100; /* 確保在選單上方 */
+    z-index: 1100;
   }
 }
 
-/* 📱 手機 / 平板調整 */
+/* 📱 手機 / 平板 */
 @media (max-width: 768px) {
   .navbar {
     padding: 10px 20px;
 
     .logo {
       .logo-img {
-        width: 130px;
+        width: 100px; /* ✅ 更小一點 */
       }
     }
 
-    /* 手機版選單 → 預設隱藏，點擊漢堡才展開 */
     .nav-links {
       position: fixed;
       top: 0;
-      right: -100%; /* 藏起來 */
-      width: 240px;
+      right: -100%; /* 預設藏起來 */
+      width: 70%;
       height: 100vh;
-      background-color: #fff;
+      background: rgba(0, 0, 0, 0.85); /* ✅ 半透明黑底 */
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 30px;
-      margin-top: 0;
+      gap: 26px;
       transition: right 0.3s ease;
       z-index: 1000;
 
       li a {
+        color: #fff;
+
         img {
-          height: 32px;
+          height: 28px;
+          filter: brightness(0) invert(1);
         }
 
         span {
-          font-size: 13px;
-          margin-top: 6px;
+          font-size: 14px;
+          margin-top: 4px;
         }
       }
 
       li:last-child a img {
-        height: 36px;
+        height: 30px;
       }
 
       &.active {
-        right: 0; /* 展開 */
+        right: 0; /* ✅ 展開 */
       }
     }
 
-    /* 手機版顯示漢堡 icon */
     .menu-icon {
       display: block;
     }
