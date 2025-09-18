@@ -5,19 +5,19 @@ import "../scss/StoreEnvironmentstyle.scss";
 import storeBanner from "../assets/images/storybanner2.jpg";
 
 // 接待櫃檯
-import reception1 from "../assets/images/Store1.png";
-import reception2 from "../assets/images/Store1a.png";
-import reception3 from "../assets/images/Store1b.png";
+import reception1 from "../assets/images/STEP1.jpg";
+import reception2 from "../assets/images/STEP2.jpg";
+import reception3 from "../assets/images/STEP3.jpg";
 
 // 美甲區
-import nail1 from "../assets/images/Store2.png";
-import nail2 from "../assets/images/Store2a.png";
-import nail3 from "../assets/images/Store2b.png";
+import nail1 from "../assets/images/STEP4.jpg";
+import nail2 from "../assets/images/STEP5.jpg";
+import nail3 from "../assets/images/STEP6.jpg";
 
 // 霧眉區
-import brow1 from "../assets/images/Store3.png";
-import brow2 from "../assets/images/Store3a.png";
-import brow3 from "../assets/images/Store3b.png";
+import brow1 from "../assets/images/STEP7.jpg";
+import brow2 from "../assets/images/STEP8.jpg";
+import brow3 from "../assets/images/STEP9.jpg";
 
 // 背景裝飾色塊
 import vector1 from "../assets/images/StoreVector1.svg";
