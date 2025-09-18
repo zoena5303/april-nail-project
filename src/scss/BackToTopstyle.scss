@@ -1,20 +1,11 @@
-.back-to-top {
+.floating-buttons {
   position: fixed;
   bottom: 40px;
   right: 40px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  background-color: #9c5a05; // 品牌咖啡橘
-  color: #fff;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-
-  /* 用 flex 讓箭頭完全置中 */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 15px; // 兩顆按鈕間距
+  z-index: 1000;
 
   /* 預設隱藏 */
   opacity: 0;
@@ -28,13 +19,77 @@
     transform: translateY(0);
   }
 
-  &:hover {
-    background-color: #b46a0b; // hover 時稍微變亮
+  .circle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    &:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
   }
 
-  /* 讓箭頭大小固定清楚 */
-  svg {
-    width: 24px;
-    height: 24px;
+  .back-to-top {
+    background-color: #d88b32; // 橘色
+    &:hover {
+      background-color: #e39b46;
+    }
+  }
+
+  .booking-btn {
+    background-color: #9c5a05; // 品牌咖啡橘
+    animation: pulse 1.8s infinite ease-in-out;
+
+    &:hover {
+      background-color: #b46a0b;
+    }
+  }
+}
+
+/* 呼吸閃爍動畫 */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(156, 90, 5, 0.6);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(156, 90, 5, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(156, 90, 5, 0.6);
+  }
+}
+
+/* 📱 手機版縮小 */
+@media (max-width: 600px) {
+  .floating-buttons {
+    bottom: 20px;
+    right: 20px;
+    gap: 10px;
+
+    .circle-btn {
+      width: 45px;
+      height: 45px;
+
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 }
