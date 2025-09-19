@@ -1,3 +1,4 @@
+// src/pages/StoreEnvironment.jsx
 import React, { useState, useEffect } from "react";
 import "../scss/StoreEnvironmentstyle.scss";
 
@@ -48,6 +49,7 @@ const StoreEnvironment = () => {
     );
   };
 
+  // ✅ 鍵盤控制 & Scroll Reveal
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (lightboxIndex !== null) {
@@ -57,7 +59,26 @@ const StoreEnvironment = () => {
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+
+    // Scroll Reveal
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      observer.disconnect();
+    };
   }, [lightboxIndex]);
 
   return (
@@ -77,8 +98,13 @@ const StoreEnvironment = () => {
         </div>
         <div className="env-images collage">
           {[reception1, reception2, reception3].map((img, i) => (
-            <div key={i} className="img-box" onClick={() => openLightbox(i)}>
+            <div
+              key={i}
+              className="img-box reveal"
+              onClick={() => openLightbox(i)}
+            >
               <img src={img} alt={`接待櫃檯 ${i + 1}`} />
+              <div className="img-overlay">接待櫃檯</div>
             </div>
           ))}
         </div>
@@ -91,10 +117,11 @@ const StoreEnvironment = () => {
           {[nail1, nail2, nail3].map((img, i) => (
             <div
               key={i}
-              className="img-box"
+              className="img-box reveal"
               onClick={() => openLightbox(i + 3)}
             >
               <img src={img} alt={`美甲區 ${i + 1}`} />
+              <div className="img-overlay">美甲區</div>
             </div>
           ))}
         </div>
@@ -115,10 +142,11 @@ const StoreEnvironment = () => {
           {[brow1, brow2, brow3].map((img, i) => (
             <div
               key={i}
-              className="img-box"
+              className="img-box reveal"
               onClick={() => openLightbox(i + 6)}
             >
               <img src={img} alt={`霧眉區 ${i + 1}`} />
+              <div className="img-overlay">霧眉區</div>
             </div>
           ))}
         </div>
