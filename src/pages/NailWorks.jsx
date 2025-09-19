@@ -5,7 +5,7 @@ import "../scss/NailWorksstyle.scss";
 import NaillBanner from "../assets/images/NaillBanner2.jpg";
 import Naill1 from "../assets/images/Naill-1.jpg";
 import Naill2 from "../assets/images/Naill-2.jpg";
-import Naill3 from "../assets/images/Naill-3.jpg";
+import Naill3 from "../assets/images/Naill-3-1.jpg";
 import Naill4 from "../assets/images/Naill-4.jpg";
 import Naill6 from "../assets/images/Naill-6.jpg";
 import Naill7 from "../assets/images/Naill-7.jpg";
