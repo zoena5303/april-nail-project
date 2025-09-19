@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../scss/BrowWorksstyle.scss";
 
 // 匯入圖片
@@ -9,8 +9,8 @@ import BrowWorksBanner from "../assets/images/BrowWorksbanner.jpg";
 // Before / After Slider
 const BeforeAfter = ({ before, after }) => {
   const [position, setPosition] = useState(50);
-  const isDragging = React.useRef(false);
-  const containerRef = React.useRef(null);
+  const isDragging = useRef(false);
+  const containerRef = useRef(null);
 
   const handleDown = () => { isDragging.current = true; };
   const handleUp = () => { isDragging.current = false; };
@@ -88,6 +88,25 @@ const BrowWorks = () => {
     selectedCategory === "all"
       ? works
       : works.filter((work) => work.category === selectedCategory);
+
+  // === IntersectionObserver，讓卡片滑動進入才觸發動畫 ===
+  useEffect(() => {
+    const cards = document.querySelectorAll(".work-card");
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+            obs.unobserve(entry.target); // ✅ 只觸發一次
+          }
+        });
+      },
+      { threshold: 0.2 } // 至少 20% 卡片進入視窗才觸發
+    );
+
+    cards.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
+  }, [selectedCategory]); // 每次切換分類重新監測
 
   return (
     <div className="brow-works">
