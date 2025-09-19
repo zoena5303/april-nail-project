@@ -1,11 +1,11 @@
 .brow-works {
   background-color: #fdf9f4;
 
-  /* === Banner 區（設計式裁切，對齊美甲作品區）=== */
+  /* === Banner 區 === */
   .banner {
     position: relative;
     width: 100vw;
-    height: 60vh; /* 桌機版高度 */
+    height: 60vh; /* 桌機高度 */
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
     margin-top: -40px; /* 對齊 Navbar */
@@ -14,8 +14,8 @@
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;       /* ✅ 設計式裁切 */
-      object-position: center bottom; /* ✅ 保留沙發 */
+      object-fit: cover;            /* ✅ 永遠鋪滿，不留白 */
+      object-position: center bottom; /* ✅ 保重點（沙發優先） */
       display: block;
       filter: brightness(85%);
     }
@@ -172,14 +172,15 @@
     }
   }
 
-  /* === RWD：平板 === */
+  /* === 平板 (RWD) === */
   @media (max-width: 992px) {
     .banner {
       height: 40vh; /* ✅ 高度縮小 */
       margin-top: -30px;
 
       img {
-        object-position: center bottom; /* ✅ 沙發保持可見 */
+        object-fit: cover;
+        object-position: center bottom;
       }
 
       .banner-title {
@@ -189,14 +190,15 @@
     }
   }
 
-  /* === RWD：手機 === */
+  /* === 手機 (RWD) === */
   @media (max-width: 600px) {
     .banner {
-      height: 30vh; /* ✅ 手機更小 */
+      height: 40vh; /* ✅ 手機鋪滿 */
       margin: 0;
 
       img {
-        object-position: center bottom; /* ✅ 沙發保持可見 */
+        object-fit: cover;         /* ✅ 保證不留白 */
+        object-position: center bottom;
       }
 
       .banner-title {
