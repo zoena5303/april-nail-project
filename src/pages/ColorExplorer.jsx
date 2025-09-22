@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "../scss/ColorExplorerstyle.scss";
 
 // 匯入圖片
-import color1 from "../assets/images/color1.jpg";        // Step0 封面圖
+import color1 from "../assets/images/color1.jpg"; // Step0 封面圖
 import colorhand2 from "../assets/images/colorhand2.jpg"; // Step1 膚色手
-import color3 from "../assets/images/color3.jpg";        // Step2 甲型圖
-import Service2 from "../assets/images/Service2.png";    // Step3 預設背景
-import Naill1 from "../assets/images/Naill-1.jpg";       // 貓眼
-import Naill2 from "../assets/images/Naill-2.jpg";       // 特殊造型
-import Naill3 from "../assets/images/Naill-3.jpg";       // 暈染
-import Naill4 from "../assets/images/Naill-4.jpg";       // 法式
+import Service2 from "../assets/images/Service2.png"; // Step3 預設背景
+import Naill1 from "../assets/images/Naill-1.jpg"; // 貓眼
+import Naill2 from "../assets/images/Naill-2.jpg"; // 特殊造型
+import Naill3 from "../assets/images/Naill-3.jpg"; // 暈染
+import Naill4 from "../assets/images/Naill-4.jpg"; // 法式
 
 const ColorExplorer = () => {
   const [step, setStep] = useState(0);
@@ -21,9 +20,15 @@ const ColorExplorer = () => {
   const navigate = useNavigate();
 
   const tones = ["白皙", "自然", "健康"];
-  const shapes = ["方形指甲", "方圓形指甲", "圓形指甲", "橢圓形指甲", "杏仁形指甲"];
 
-  // ✅ 款式與圖片對應
+  const shapes = [
+    { name: "方形指甲", class: "square" },
+    { name: "方圓形指甲", class: "squoval" },
+    { name: "圓形指甲", class: "round" },
+    { name: "橢圓形指甲", class: "oval" },
+    { name: "杏仁形指甲", class: "almond" },
+  ];
+
   const styleOptions = [
     { name: "貓眼", img: Naill1 },
     { name: "特殊造型", img: Naill2 },
@@ -56,6 +61,7 @@ const ColorExplorer = () => {
             <img src={color1} alt="start" className="cover-img" />
             <div className="cover-glass">
               <h2 className="cover-title">指尖更衣室</h2>
+              <p className="cover-subtitle">為你打造專屬的美甲風格</p>
               <button className="cover-btn" onClick={() => setStep(1)}>
                 開始測試
               </button>
@@ -106,20 +112,20 @@ const ColorExplorer = () => {
             </div>
             <p className="progress-text">Step 2 / 4</p>
             <h3>選擇你的甲型</h3>
-            <img src={color3} alt="nail-shape" className="nail-shape-img" />
             <p className="selected-label">
               {selectedShape ? `你選的是：${selectedShape}` : ""}
             </p>
             <div className="shape-options">
               {shapes.map((shape) => (
                 <button
-                  key={shape}
+                  key={shape.name}
                   className={`shape-btn ${
-                    selectedShape === shape ? "active" : ""
+                    selectedShape === shape.name ? "active" : ""
                   }`}
-                  onClick={() => setSelectedShape(shape)}
+                  onClick={() => setSelectedShape(shape.name)}
                 >
-                  {shape}
+                  <div className={`nail-shape ${shape.class}`}></div>
+                  {shape.name}
                 </button>
               ))}
             </div>
@@ -143,18 +149,14 @@ const ColorExplorer = () => {
               <div className="progress" style={{ width: "75%" }}></div>
             </div>
             <p className="progress-text">Step 3 / 4</p>
-
-            {/* ✅ 預設 Service2，選了才換 Naill 圖 */}
             <img
-              key={selectedStyle || "default"}
               src={
-                styleOptions.find(opt => opt.name === selectedStyle)?.img ||
+                styleOptions.find((opt) => opt.name === selectedStyle)?.img ||
                 Service2
               }
               alt="style"
               className="style-bg fade-in"
             />
-
             <div className="style-options-glass">
               {styleOptions.map((opt) => (
                 <button
@@ -186,31 +188,36 @@ const ColorExplorer = () => {
           <div className="card-content result-step">
             <div className="result-bg">
               <img
-                key={selectedStyle}
-                src={styleOptions.find(opt => opt.name === selectedStyle)?.img}
+                src={styleOptions.find((opt) => opt.name === selectedStyle)?.img}
                 alt="Result"
                 className="result-img fade-in"
               />
               <div className="blur-overlay"></div>
               <div className="result-content">
                 <h2>測試結果</h2>
-
-                {/* ✅ 縮略圖預覽 */}
                 <div className="style-preview-thumb">
                   <img
                     src={
-                      styleOptions.find(opt => opt.name === selectedStyle)?.img
+                      styleOptions.find((opt) => opt.name === selectedStyle)?.img
                     }
                     alt={selectedStyle}
                   />
                   <p>{selectedStyle}</p>
                 </div>
-
                 <p>膚色：{selectedTone}</p>
-                <p>甲型：{selectedShape}</p>
+                <div className="selected-shape">
+                  <span className="shape-label">甲型：</span>
+                  <p>{selectedShape}</p>
+                  <div
+                    className={`nail-shape ${
+                      shapes.find((s) => s.name === selectedShape)?.class || ""
+                    }`}
+                  ></div>
+                </div>
                 <p>款式：{selectedStyle}</p>
                 <p className="recommend-text">
-                  推薦你嘗試「{selectedTone} + {selectedShape} + {selectedStyle}」風格的美甲！
+                  推薦你嘗試「{selectedTone} + {selectedShape} + {selectedStyle}
+                  」風格的美甲！
                 </p>
               </div>
             </div>
