@@ -19,11 +19,11 @@ const Footer = () => {
         <div className="footer-section">
           <h4>聯絡我們</h4>
           <ul>
-            <li>公司名稱 ｜</li>
-            <li>統一編號 ｜</li>
-            <li>服務專線 ｜</li>
-            <li>E-Mail ｜</li>
-            <li>客戶 LINE 帳號 ｜</li>
+            <li>公司名稱 ｜四月指尖</li>
+            <li>統一編號 ｜12345678</li>
+            <li>服務專線 ｜0912345678</li>
+            <li>E-Mail ｜Aprilenaill.gmail.com</li>
+            <li>客戶 LINE 帳號 ｜@Aprilenaill</li>
           </ul>
         </div>
 
