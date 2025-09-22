@@ -19,19 +19,19 @@
   /* 平板 */
   @media (max-width: 992px) {
     height: 50vh;
-    margin-top: -40px; /* ✅ 平板推少一點 */
+    margin-top: -40px;
   }
 
   /* 手機 */
   @media (max-width: 600px) {
     height: 40vh;
-    margin-top: -40px; /* ✅ 手機再微調 */
+    margin-top: -40px;
   }
 
   /* 超小螢幕 */
   @media (max-width: 400px) {
     height: 35vh;
-    margin-top: -15px; /* ✅ 縫隙更小，調到剛好貼齊 */
+    margin-top: -15px;
   }
 
   .banner-title {
@@ -39,12 +39,35 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; /* ✅ 預設字體 */
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 600;
     color: #fff;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 10px 25px;
-    border-radius: 10px;
+
+    /* 金色半透明底 */
+    background: rgba(243, 221, 199, 0.7);
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 215, 150, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+
+    /* ✨ 進場動畫 */
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+    animation: fadeInZoom 1s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+}
+
+/* 定義進場動畫 */
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
