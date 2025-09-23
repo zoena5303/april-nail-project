@@ -40,7 +40,7 @@ const Footer = () => {
 
       {/* 最底部版權 */}
       <div className="footer-bottom">
-        <p>© 2025-April NAIL STUDIO.com</p>
+        <p>© 學生練習用-April NAIL STUDIO.com</p>
       </div>
     </footer>
   );
