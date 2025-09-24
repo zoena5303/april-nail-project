@@ -123,7 +123,6 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
-    /* ✅ 主標題：白字＋陰影 */
     .cover-title {
       font-size: 2.2rem;
       font-weight: 800;
@@ -132,7 +131,6 @@
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
     }
 
-    /* ✅ 副標題：白字＋陰影 + 淡入 */
     .cover-subtitle {
       font-size: 1.1rem;
       font-weight: 600;
@@ -481,6 +479,94 @@
 
       &:hover { background-color: #d88b32; color: #fff; }
       &:active { transform: scale(0.92); }
+    }
+  }
+}
+
+/* === 平板 (≤992px) === */
+@media (max-width: 992px) {
+  .color-explorer {
+    padding: 30px 15px;
+
+    .card { padding: 20px; }
+
+    .stepper {
+      gap: 10px;
+      .step { width: 30px; height: 30px; font-size: 0.85rem; }
+    }
+
+    .result-step .result-content {
+      max-width: 90%;
+      padding: 18px;
+    }
+  }
+}
+
+/* === 手機 (≤600px) === */
+@media (max-width: 600px) {
+  .color-explorer {
+    padding: 20px 12px;
+
+    .card { padding: 16px; }
+
+    .stepper {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+
+      .step { width: 28px; height: 28px; font-size: 0.8rem; }
+
+      &::before, &::after { display: none; }
+    }
+
+    .progress-text { font-size: 0.8rem; }
+
+    .result-step .result-content {
+      max-width: 95%;
+      padding: 14px;
+      font-size: 0.9rem;
+    }
+
+    .result-step .recommend-text {
+      font-size: 0.85rem;
+      padding: 10px 12px;
+    }
+
+    .btn-group {
+      flex-wrap: wrap;
+      gap: 12px;
+      button { flex: 1 1 45%; }
+    }
+  }
+}
+
+/* === 超小螢幕 (≤400px) === */
+@media (max-width: 400px) {
+  .color-explorer {
+    padding: 15px 10px;
+
+    .card { padding: 12px; }
+
+    .stepper {
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .result-step .result-content {
+      font-size: 0.85rem;
+      padding: 12px;
+    }
+
+    .result-step .recommend-text {
+      font-size: 0.8rem;
+      padding: 8px 10px;
+      width: 100%;
+    }
+
+    .btn-group {
+      flex-direction: column;
+      button { width: 100%; }
     }
   }
 }
